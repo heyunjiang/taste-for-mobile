@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <title></title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/weui.min.css">
+    <link rel="stylesheet" href="../css/accordion-menu/style.css"/>
+    <style type="text/css">
+        div.loading{
+            background: url("../img/loadx1.gif") no-repeat 2px center;
+            width: 32px;
+            height: 32px;
+            display:none;
+            margin-top:5px;
+            margin-left:45%;
+        }
+        ul a{
+            width:100%;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:block;
+        }
+        ul a span{
+            cursor:pointer;
+            margin-right:15px;
+        }
+        .submenu li {
+            position: relative;
+        }
+        .submenu li input {
+            position: absolute;
+            top: 10px;
+            left: 16px;
+        }
+        /* 审签 */
+        .multiplecheck {
+            position: absolute;
+            height: 30px;
+            line-height: 30px;
+            padding: 0;
+            width: 100%;
+            background-color: rgba(0,0,0,0.5);
+            top: -30px;
+            -webkit-transition: top 0.5s ease;
+            transition: top 0.5s ease;
+        }
+        .multiplecheck-show { top: 0; }
+        .multiplecheck li {
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+            color: white;
+            text-align: center;
+        }
+        #selectAll,#checkAll {
+            position: absolute;
+            color: #e60012;
+            z-index: 200;
+            top: 30px;
+            height: 50px;
+            line-height: 50px;
+            display: none;
+        }
+        #selectAll {
+            font-size: 12px;
+            width: 46px;
+            text-align: center;
+        }
+        #selectAll input {
+            position: relative;
+            top: 4px;
+            left: -1px;
+        }
+        #checkAll {
+            right: 10px;
+        }
+        /* 修改weui css，因为它收到了污染 */
+        .weui-picker__item{
+            padding: 0;
+            height: 34px;
+            line-height: 34px;
+        }
+        .weui-mask, .weui-mask_transparent  {
+            z-index: 1100;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- 审批对话框 -->
+        <div class="modal" id="approveModal" data-backdrop="static"
+            role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                        <h4 class="text-center">执行审批</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <textarea rows="6" class="form-control" placeholder="请输入批语" ></textarea>
+                            </div>
+                        </div>
+                        <br> <br>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <button id="checkTrans" class="btn btn-info btn-block">转发</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <button id="checkSubmit" class="btn btn-info btn-block">提交</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <button id="checkReback" class="btn btn-danger btn-block">打回</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+    <!-- 选转发人对话框 -->
+        <div class="modal" id="tranpersonsModal" data-backdrop="static"
+            role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                        <h4 class="text-center">企业成员</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="sort_box">
+                            <div class="sort_list">
+                                <ul id="sort_box" class="list-group">
+                                  <!-- <li class="list-group-item">Cras justo odio</li>
+                                  <li class="list-group-item">Dapibus ac facilisis in</li>
+                                  <li class="list-group-item">Morbi leo risus</li>
+                                  <li class="list-group-item">Porta ac consectetur ac</li>
+                                  <li class="list-group-item">Vestibulum at eros</li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- 审批转发-->
+        <div class="modal" id="trantasksModal" data-backdrop="static"
+            role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+                        <h4 class="text-center">审批任务转发</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <textarea id="tranresonid" rows="6" class="form-control"
+                                    placeholder="请输入任务转发理由" ></textarea>
+                            </div>
+                        </div>
+                        <br> <br>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <button id="submitTrans" class="btn btn-info btn-block">转发</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <button id="cancelTrans" class="btn btn-danger btn-block">取消</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+        </div>
+    <!-- <div class="loading"></div> -->
+    <div class="multiplecheck">
+        <ul>
+            <li id="cancelAll">退出</li>
+        </ul>
+    </div>
+    <div id="selectAll"><input type="checkbox"></div>
+    <div id="checkAll">审签</div>
+    <ul id="accordion" class="accordion">
+        <li>
+            <div class="link">
+                <i class="fa fa-paint-brush"></i><span id="checkTaskHead">审签任务(0)</span><i class="fa fa-chevron-down"></i>
+            </div>
+            <ul id="checkUITask" class="submenu">
+                
+            </ul>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-code"></i><span id="projectTaskHead">项目任务(0)</span><i class="fa fa-chevron-down"></i></div>
+            <ul id="projectUITask" class="submenu">
+            </ul>
+        </li>
+        <li>
+            <div class="link"><i class="fa fa-mobile"></i><span id="changeNoticeHead">变更通知(0)</span><i class="fa fa-chevron-down"></i></div>
+            <ul id="changeNoticeUITask" class="submenu">
+            </ul>
+        </li>
+        <li><div class="link"><i class="fa fa-globe"></i><span id="faFangDocHead">发放文档(0)</span><i class="fa fa-chevron-down"></i></div>
+            <ul id="faFangUITask" class="submenu">
+            </ul>
+        </li>
+    </ul>
+    <!-- <script type="text/javascript" src="../js/jquery.min.js"></script> -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/common/longTap.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.1.2/weui.min.js"></script>
+    <script type="text/javascript" src="../js/common/agencyTask.js"></script>
+    <script type="text/javascript" src="../js/common/wxIndex.js"></script>
+  </body>
+</html>

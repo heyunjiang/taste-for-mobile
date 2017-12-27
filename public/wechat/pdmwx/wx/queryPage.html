@@ -1,0 +1,301 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, 
+user-scalable=no" />
+<meta name="misapplication-tap-highlight" content="no"/>
+<meta name="HandheldFriendly" content="true"/>
+<meta name="MobileOptimized" content="320"/>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<br>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="btn-group btn-group-justified" ng-show="tabIndex == 0">
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base hyj-tab1-show"
+				ng-click="changeTab(0)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAC0ElEQVRoge2ZvWsUQRTAf0WKFBF33txCCsETAn4QMGpKC4sUlilSXBEkRYqACpb+FykDBjkxCIrgZ2ElKfJHpBGuuN3ZcM0VKa6wWIvd9SZLcpfb3ZsjsA9eMzP73vvtzLx5swu1XAHp0Jw3NFYD9NakapCnMw0+RL8wyKlB4uKqDnv4C86Dj9DPywU+1BD5FCH3nAIYpJ8GMIiQdsElZIMcOZuJE9Sy5Xi/qJ30+VPnEAa1mTkN0FvF7Uic7qMjpxD29JcFCNBbPfwFpxAGvV4RQD973qDvhshHC+JLgHe/qphzjqsHAAhp3DboD1aK/RrgrVQRc87xdAAAuvhLBvXegvgW4j0oG3PO8fQAAE64fssg7zIfEeq7ofGwTMw5x9MFSPq8mxHydgihfxgaj4r6yhmfPgBAgNwwyJvhia1/GhqrRf1ZhqtNo6PGxDAXIZ+t7HTcw18s6hOoFODYILvjxlUOUR2APjBIN4a5cWMrhagKIMJrJrWQOgxQO5co/rYNEtkQHTxvZgAABn3HIL+s6nbS+8RmEaeVZKGiUtp/DVBSaoCLDMQwZ9Dr+ewRolo9/IWL+jPt4i8BBHgrw2f1mjOApJKUv+dliwDZGNWf1DvSTuyrQ6t90KE57wTAldQAFxlID6WBNf37SfuZJRFP0B8bpJ+/H08NoENzPkS1sg14glpOA3x83qYd15+c+Hr9sv5LA7iSGmCCPVB4zacfvGa7B8qs+R7+Yr0HJjVguNaI0HsR0o6QdohqJe3yKmvL1CC7l7mJOQXo4S8aZN8KcjsZr17nASL0Xr5EmDmAK6kBrjxAgGxYeXu7+hDH+bd/TxW41J/9xaQPphDjSEkTRGyQODtbJpLkZvX/+8zAILtFfvJNrmrHJJ9gstnvFH4LIao1ohxwol28J4UBEgj9MkL/cR14hPwO0M9KBZ9JWnituVhCIapVaM3XMiP5B9mUjM4m4OnaAAAAAElFTkSuQmCC" class="hyj-tab1-img" alt="doc">文档<div class="hyj-tab1-show-bottom"></div><div class="hyj-tab1-show-bottom"></div></a>
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base" 
+			ng-click="changeTab(1)">物料</a>
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base"
+				ng-click="changeTab(2)">变更申请</a> 
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base" 
+			ng-click="changeTab(3)">变更任务</a>
+		</div>
+		<div class="btn-group btn-group-justified" ng-show="tabIndex == 1">
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base"
+				ng-click="changeTab(0)">文档</a>
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base hyj-tab1-show" 
+			ng-click="changeTab(1)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACrElEQVRoge2ZP2gTURzHP0MFhwr3fi8RB4eCRTpUCFjHYhEE/6CTg4NDRweHDh07FBSXDo4dHFU6iqDgVkEQtP4ZHDo4BMzl92I7dKjgeA5J6CW55q7JXe5K84Pvktx79/3kvu+XvBcY17jyL6U0p5hNRf4pEvTRviIfFVmq4nl5+wZgh/I5RfZijEdpWzlTyts/inkwgPlAkcDHruTtH8W+6DVnNhU7A9DAzLbi1QPgML9yMV2jPO1jF33sYivXYWPVHcqT4et3KE8qUo2CqCPLzbm8ysgAWsYjY+GQtagxDlmLidSzQgAo5mnUGMU8GRmAj3moiOv8ZL2pZADyM4CJ8HwBTCiy1Q+gjqx2Ane8v9dAHicyX8Xzovr5EQACh2z4yPnQfM/jOlIMQEuluViAOuZ+tKnkACHtJm2pSQAStd3DzA0IcBR1rIGB18kJAZB72uzraWopDqA7ZgMDjKIyfQKjqNQBFKllEJt+SjdCBdFQT6AIGgPkrTFAFnI1vAWHXY+7tohdyLW3ngB1ZPU4AXx2mJsh89cd8um4ROiLw9xq37OBvabN86K4cYUA2PIxt9v3c3hXFfsh4dhUAZwiS9p7KpE4861Dse2k49NcA/vt7Z2PV9Gu/XMW5tMG6Ni4K3YmBmJo82kDBIp91cBcOoAw84q8773OfGtg7hxcV7qsyNujms9iDQSKvFPMfHvsb+wVxbwOQX6vU7p7MLdXcZg3A5rPBCBQxDUws6F4TGqzJXbHpv36oOYz/SLbr+EthM3WKE+naT5rgEAR32Efdc+3S+miQzaGNZ9lhML6q9iVr3AK4A9nLyj2ZUrmRwIQKBI47HrrSHHo2IwyQj3rIk3zeQBkoUL8mBsD9C1FbhTAaKTqyHIsQJWp04f9q5izfoz6eHNcJ6L+A0X2Jp7BIneTAAAAAElFTkSuQmCC" class="hyj-tab1-img" alt="doc">物料<div class="hyj-tab1-show-bottom"></div></a>
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base"
+				ng-click="changeTab(2)">变更申请</a> 
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base" 
+			ng-click="changeTab(3)">变更任务</a>
+		</div>
+		<div class="btn-group btn-group-justified" ng-show="tabIndex == 2">
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base"
+				ng-click="changeTab(0)">文档</a>
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base" 
+			ng-click="changeTab(1)">物料</a>
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base hyj-tab1-show"
+				ng-click="changeTab(2)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAADF0lEQVRoge1ZsWobQRB9hYsUDtzO6sClChcuHHDhNMGENCauQpo0IR+QD0jhIoXAhQMunOAiXVI4YIghLpQuhavgwgEVCqhwIYh0s/K5dCGIC6XYlZHPK93eaXXBcA+m0868dzczN7MCSpQoUeJOg1FZZch9BVkfAHMuZxToUIEOGGJt1vzGoo0gYNApgwZDU6CdtHMRqDZ6hkENhaBaAOWbiBHOJ4gYE0cdhIvJ3ysEVf3Ub5+JES4ULgAA7AKuhRwriD0FscegHwy6GvfbNqr3CievEFQnC8hicqlwAQyx6U8AbRVMPnjMoF8eBfxm0NNCyMcIFxjU8kh+aC1b8XsFQz5nkHIk1GdQ21jf8YxiiFfeCEegmoKsM8SRIZJG4EqBdroIVpK+ughWGHLbUUybIY4UZN3l22JFD+IBg/5kSIHvPVSepfll0AaDvrn7lTGjsppZQAR64xpEQX50HSMAYADMmbfhKEJsZhagIM4cAzSykB8VoUAnbg9InGUWoHM2tdtc2fLdFQy55FATzdwx0lpm7gIbQQ+0NYF8Z+o5ybTOv2MCbEwrgCHWeOycJF5O698EuTk2G+t7ca79d2y15cs/GPTBkj5Nj/5/Jv1HoM++/INB74sWoECffPkH63n+bqZQBHrEoAtbkZ2D1j35txaxAr2YWsC4NVCb3PYgILkjj1qLcb8yK+cD/RHKv02Zre4yJcZprjFbgQ5THA9f80meUQIAGOLYJQaDWnkETEid26mUVYTD2x1tqbXMAs71F9hRAA0Y9DVyKGq9jsovGfxeKMiHmQXoYNTIKKLfA23ZcraDcNE89bScH5Ku62WKdnORB3SRxQgXYoTzPYhlM8O7EBiw7u2nxmx93maXXYjXeWvKCWYEnsVSrwq7HzoHrTOo6Yu8gjiLEKSuo17BkG99CYgg3xVK3ghY8iVgmq0uN/RiPpFYgyH3tVn3iWuLEc4XLsCsmxZC4tj2RHsQy6Yt2gQUf73eQbiY7EYKtJPWAhm0mxDQnvmV4iR0EDxRoIMsfzHpWzc6ZA87dYkSJUr8X/wDDZkS+49m10EAAAAASUVORK5CYII=" class="hyj-tab1-img" alt="doc">变更申请<div class="hyj-tab1-show-bottom"></div></a> 
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base" 
+			ng-click="changeTab(3)">变更任务</a>
+		</div>
+		<div class="btn-group btn-group-justified" ng-show="tabIndex == 3">
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base"
+				ng-click="changeTab(0)">文档</a>
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base" 
+			ng-click="changeTab(1)">物料</a>
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base"
+				ng-click="changeTab(2)">变更申请</a> 
+			<a class="btn btn-default selfNavBtn-default hyj-tab1-base hyj-tab1-show" 
+			ng-click="changeTab(3)"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAACfUlEQVRoge2ZLXDbQBCFHwgwsGfuVtZMQIBAQECAYUCAoWFBYEBAQUBAQUFBQWYKAgoKAgoDDQMLAwIKAgwKDAoEfN7LOMDAQCDABZITj6y/s1VJHmtnHtFIq/vudvf2JKC22mpLNRdOQ4FORhDdoqUgOhsNXkFeMshj0LxEaQb1jAfPsI4Y9Fry4BeauhDCEIA+VWDgb1Kgk60GGEF0dxIgLoG9Mayr9CpCZwx6KhRgDuxpCEdDOIxW+xn0bdWhvDeYiI+FAbhwGgxylx4cTmA32S9lb8406C4rgIJ1USCAEAyaLT34ElxzcwDwGNZR2v0T2Pvh9xmF0AR2cxFCLoQINrN5DgDzMeizgnWRLHnJoOnGSRy8eBS1nJUNoWUbg67jnG0AMA3CI0kvVQXwJrCbaffPgT0G/dkYIEjeHoN+5bUCGvJ2DLpOEsO64Yj9JzMAQz68L6d8CEC8PAAKyYFQGfWCa4OQw0FWAIb8UijABPb+UitwoCA6MU6H/moliR45p5bcOAdGEF0N6kfFYxna2W609IGvDaAgOhr0nSO29UoDMOjHIgk1rJ/PkMcxTgfpSbyOVipedoCgEww9aB9GOH0yWk5Di4LIvAJ++fQ7Qwb1GK02r1YiT4P6GnT3H9TniNJrnAP+iUyea9DvsuN/LYCkZs6fIXmfZUY5dJqrCsBjdj/WVSkADOsDg4YJTjNWoXx28swALpzG+5HSaTDkednxnxkg4gvElNFqa8i/WwugQAccc8yrHEA4hEawDzXkbdmDNwJYGG97M1cD1ABhyVMjgIQ2ugzNjH8xAYCC9ZXL/082U6Az48EvbPkrRdFiyNO1Zr622nbE/gHrJJo16FqdUwAAAABJRU5ErkJggg==" class="hyj-tab1-img" alt="doc">变更任务<div class="hyj-tab1-show-bottom"></div></a>
+		</div>
+		<br>
+		<div ng-show="tabIndex == 0">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="docNum" class="col-xs-3 hyj-justify down10">编码<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9 controls">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-font" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="docNum" ng-model="docSearch.docNum">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="docName" class="col-xs-3 hyj-justify down10">名称<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="docName" ng-model="docSearch.docName">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="docCreatePerson"
+						class="col-xs-3 hyj-justify down10">创建人<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="docCreatePerson" ng-model="docSearch.docCreatePerson">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="docCreateTime"
+						class="col-xs-3 hyj-justify down10">创建时间<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<!-- <input type="text" class="form-control"
+						id="docCreateTime" ng-model="docSearch.docCreateTime"> -->
+						<!-- <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd">
+		                   <input class="form-control" size="16" type="text"
+		                    readonly id="docCreateTime" ng-model="docSearch.docCreateTime">
+		                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+							<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		                </div> -->
+		                <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd">
+		                	<div class="input-group-addon bg-white"><span class="glyphicon glyphicon-time"></span></div>
+		                    <input class="form-control" size="16" type="text"
+		                    readonly id="docCreateTime" style="background-color: white;" ng-model="docSearch.docCreateTime">
+		                    <span class="input-group-addon bg-white"><span class="glyphicon glyphicon-remove"></span></span>
+		                </div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div ng-show="tabIndex == 1">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="materailNum" class="col-xs-3 hyj-justify down10">编码<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-font" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="materailNum" ng-model="materailSearch.materailNum">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="materailName" class="col-xs-3 hyj-justify down10">名称<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="materailName" ng-model="materailSearch.materailName">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="materailCreatePerson" class="col-xs-3 hyj-justify down10">创建人<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="materailCreatePerson" ng-model="materailSearch.materailCreatePerson">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="materailCreateTime" class="col-xs-3 hyj-justify down10">创建时间<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd">
+							<div class="input-group-addon bg-white"><span class="glyphicon glyphicon-time"></span></div>
+		                    <input class="form-control" size="16" type="text"
+		                    readonly id="materailCreateTime" style="background-color: white;" ng-model="materailSearch.materailCreateTime">
+		                    <span class="input-group-addon bg-white"><span class="glyphicon glyphicon-remove"></span></span>
+		                </div>
+						<!-- <input type="text" class="form-control" 
+						id="materailCreateTime" ng-model="materailSearch.materailCreateTime"> -->
+					</div>
+				</div>
+			</form>
+		</div>
+		<div ng-show="tabIndex == 2">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="chgApplyNum" class="col-xs-3 hyj-justify down10">编码<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-font" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="chgApplyNum" ng-model="chgApplySearch.chgApplyNum">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="chgApplyName" class="col-xs-3 hyj-justify down10">名称<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="chgApplyName" ng-model="chgApplySearch.chgApplyName">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="chgApplyCreatePerson" class="col-xs-3 hyj-justify down10">创建人<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="chgApplyCreatePerson" ng-model="chgApplySearch.chgApplyCreatePerson">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="chgApplyCreateTime" class="col-xs-3 hyj-justify down10">创建时间<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd">
+							<div class="input-group-addon bg-white"><span class="glyphicon glyphicon-time"></span></div>
+		                    <input class="form-control" size="16" type="text"
+		                    readonly id="chgApplyCreateTime" style="background-color: white;" ng-model="chgApplySearch.chgApplyCreateTime">
+		                    <span class="input-group-addon bg-white"><span class="glyphicon glyphicon-remove"></span></span>
+		                </div>
+						<!-- <input type="text" class="form-control" 
+						id="chgApplyCreateTime" ng-model="chgApplySearch.chgApplyCreateTime"> -->
+					</div>
+				</div>
+			</form>
+		</div>
+		<div ng-show="tabIndex == 3">
+			<form class="form-horizontal" role="form">
+				<div class="form-group">
+					<label for="chgTaskName" class="col-xs-3 hyj-justify down10">名称<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="chgTaskName" ng-model="chgTaskSearch.chgTaskName">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="chgTaskExecutePerson" class="col-xs-3 hyj-justify down10">执行人<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="chgTaskExecutePerson" ng-model="chgTaskSearch.chgTaskExecutePerson">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="chgTaskCreatePerson" class="col-xs-3 hyj-justify down10">创建人<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="chgTaskCreatePerson" ng-model="chgTaskSearch.chgTaskCreatePerson">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="chgTaskCreateTime" class="col-xs-3 hyj-justify down10">创建时间<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd">
+							<div class="input-group-addon bg-white"><span class="glyphicon glyphicon-time"></span></div>
+		                    <input class="form-control" size="16" type="text"
+		                    readonly id="chgTaskCreateTime" style="background-color: white;" ng-model="chgTaskSearch.chgTaskCreateTime">
+		                    <span class="input-group-addon bg-white"><span class="glyphicon glyphicon-remove"></span></span>
+		                </div>
+						<!-- <input type="text" class="form-control" 
+						id="chgTaskCreateTime" ng-model="chgTaskSearch.chgTaskCreateTime"> -->
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="chgTaskStatus" class="col-xs-3 hyj-justify down10">任务状态<span style="width: 100%;display: inline-block;"></span></label>
+					<div class="col-xs-9">
+						<div class="input-group">
+							<div class="input-group-addon bg-white">
+								<span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+							</div>
+							<input type="text" class="form-control" id="chgTaskStatus" ng-model="chgTaskSearch.chgTaskStatus">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<button class="btn btn-block yonyouColor"
+				type="submit" ng-click="searchBtn()">确定</button>
+			</div>
+		</div>
+		<!-- col-xs-12 over -->
+	</div>
+</div>
+<br>
+<br>
+<script type="text/javascript">  
+	$('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+</script>
+<!-- logo -->
+<div class="row">
+	<div class="col-xs-11 text-right">
+		<img src="../img/logo.png" class="img-rounded" style="width:90px;height:30px">
+	</div> 
+	<div class="col-xs-1"></div>
+</div>

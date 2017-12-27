@@ -1,0 +1,219 @@
+.specialTitle{
+/* color:#888888;
+font-weight:bold;
+font-size:20px; */
+	font-size:14px;
+	color:#295073;
+	font-weight:bold;
+}
+
+.text-overflow {
+display:block;/*�����������*/
+width:250px;/*ָ������*/
+word-break:keep-all;/* ������ */
+white-space:nowrap;/* ǿ����ͬһ������ʾ�����ı���ֱ���ı������������� br ���󡣲����� */
+overflow:hidden;/* ���ݳ�������ʱ���س������ֵ����� */
+text-overflow:ellipsis;/* IE ר�����ԣ����������ı����ʱ��ʾʡ�Ա��(...) ������overflow:hidden;һ��ʹ�á�*/
+}
+
+.changeLine{
+	word-break:break-all;
+	width:250px;
+}
+
+.myVerticalCenter{
+position:fixed;
+_position:absolute;
+top:40%;
+_top:0px;
+}
+
+
+/* ����ͼ */
+
+.row-left,.row-right{
+   /*  display: inline-block; */
+   float: left;
+    width: 40%;
+    vertical-align: top;
+    height:60px;
+    overflow:hidden;
+}
+.row-left2,.row-right2{
+   /*  display: inline-block; */
+   float: left;
+    width: 40%;
+    vertical-align: top;
+    height:60px;
+    overflow:hidden;
+}
+.row-left{
+    text-align: right;
+    padding-right: 10px
+}
+.row-right{
+    text-align: left;
+    padding-left: 10px;
+}
+
+.row-left2{
+    text-align: right;
+    padding-right: 10px
+}
+.row-right2{
+    text-align: left;
+    padding-left: 10px;
+}
+.circle-wrapper{
+    /*  display: inline-block; */
+    float: left;
+    margin-top: 5px;
+    margin-bottom: -5px;
+    position: relative;
+    height: 60px;
+    width: 1px;
+    background-color: #ccc;
+}
+
+.circle-wrapper1{
+    /*  display: inline-block; */
+    float: left;
+    margin-top: 5px;
+    margin-bottom: -5px;
+    position: relative;
+    height: 10px;
+    width: 0px;
+    background-color: #ccc;
+}
+.circleBlue{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #0099FF;
+    position:absolute;
+    left: -5px;
+    top: 0;
+}
+
+.circleGreen{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #00FF33;
+    position:absolute;
+    left: -5px;
+    top: 0;
+}
+
+.circleGray{
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    background-color: #ccc;
+    position:absolute;
+    left: -5px;
+    top: 0;
+}
+
+.clearfix:after{
+    clear: both;
+    display: block;
+    content: '';
+}
+
+/* ���� */
+.yonyouColor{
+	background:#FF0000; 
+	color:#FFF
+}
+
+.yonyouColor:focus{
+	background:#FF0000; 
+	color:#FFF
+}
+
+.yonyouColorBlue{
+	background:#1E90FF; 
+	color:#FFF
+}
+
+.yonyouColorBlue:focus{
+	background:#1E90FF; 
+	color:#FFF
+}
+
+.selfBtn-defaultRed:hover {
+  color: #333;
+  background-color:#FF0000; 
+  border-color: #adadad;
+}
+
+.selfBtn-defaultBlue:hover {
+  color: #333;
+  background-color:#1E90FF; 
+  border-color: #adadad;
+}
+
+/* bom�ṹ�б� */
+.bomTableColor1{
+	color: #FFFFFF;
+  	background-color:#FF9966;
+  	margin: 1px 0px 1px 0px;
+  	padding: 0px 0px 0px 2px;
+}
+
+.bomTableColor2{
+	color: #FFFFFF;
+  	background-color:#33CCFF;
+  	margin: 1px 0px 1px 0px;
+  	padding: 0px 0px 0px 2px;
+}
+
+/* �����ڵ���  */
+#dropBack{
+	display:none;
+	height:100%; width:100%;
+    background-color: #AAA;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    position: fixed;
+    top: 0;
+    z-index:99999;
+}
+
+html,body,div,ul,li,ol,a,input,textarea,p,dl,dt,dd{margin:0;padding:0;}
+ul li{list-style: none;}
+a{text-decoration: none;cursor: pointer;}
+html{height: 100%;}
+body{height: 100%;background: #f5f5f5;position: relative;font-family: '΢���ź�';max-width: 640px;margin:auto;}
+a,input,img,textarea,span,div{outline: 0;-webkit-tap-highlight-color:rgba(255,0,0,0);}
+
+.sort_box{
+    width: 100%;
+    padding-top: 0px;
+    overflow: hidden;
+}
+.sort_list{
+    padding:10px 60px 10px 80px;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    border-bottom:1px solid #ddd;
+}
+
+.sort_list .num_name{
+    color: #000;
+    /*border-bottom:1px solid #ddd;*/
+}
+
+.sort_letter{
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+    color:#787878;
+    font-size: 14px;
+    border-bottom:1px solid #ddd;
+}

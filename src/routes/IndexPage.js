@@ -11,21 +11,27 @@ class IndexPage extends React.Component {
 	constructor(props) {
         super(props)
         this.state = {
-        	currentUrl: "http://10.115.0.168:8000/#/project",
+        	currentUrl: "./dist/index.html#/project",
         }
     }
     render() {
     	  const handleClick = (obj)=>{
     	  	let url
 		  	switch(obj.key){
-		  		case "7": url="docList";break;
-		  		case "8": url="project";break;
-		  		case "9": url="project";break;
-		  		case "10": url="matter";break;
-		  		default: url="docList";break;
+		  		case "1": url="./wechat/pdmwx/wx/bindUser.html";break;
+		  		case "2": url="./wechat/pdmwx/wx/messageSend.html";break;
+		  		case "3": url="./wechat/pdmwx/wx/taskDetail.html?taskId=3363&taskType=CHECK_DOC_TASK&receivetime=2017-12-26%2014:13:09&activeid=Active:116&date=Wed%20Dec%2027%202017%2017:20:45%20GMT+0800%20(中国标准时间)";break;
+		  		case "4": url="./wechat/pdmwx/wx/index.html";break;
+		  		case "5": url="./wechat/pdmwx/wx/taskList.html";break;
+		  		case "6": url="./project/index.html";break;
+		  		case "7": url="./dist/index.html#/docList";break;
+		  		case "8": url="./dist/index.html#/project";break;
+		  		case "9": url="./dist/index.html#/project";break;
+		  		case "10": url="./dist/index.html#/matter";break;
+		  		default: url="./dist/index.html#/docList";break;
 		  	}
 		  	this.setState({
-		  		currentUrl: "http://10.115.0.168:8000/#/"+url,
+		  		currentUrl: url,
 		  	})
 		  }
 		  return (

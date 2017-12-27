@@ -1,0 +1,233 @@
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>用户绑定</title>
+    <meta http-equiv="Context-Type" content="text/html;charset=UTF-8" />
+	<meta http-equiv="pragma" content="no-cache"/>
+	<meta http-equiv="cache-control" content="no-cache"/>
+	<meta http-equiv="expires" content="0"/>    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3"/>
+	<meta http-equiv="description" content="user bind"/>
+	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=2.0"/>
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<link href="../css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="../js/spin.js"></script>
+	<script src="../js/jquery.spin.js"></script> 
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+	<script type="text/javascript" src="../js/user/userBind.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#selProvience").val($("#defaultpid").val());
+			$("#selCity").val($("#defaultcid").val());
+			var ec = $("#selEnterprise")[0].options;
+			if (ec.length>0){
+				$("#selEnterprise")[0].selectedIndex=0;
+				$("#bindEnterprise").val($("#selEnterprise")[0].options[$("#selEnterprise")[0].selectedIndex].text);
+			}
+		});
+	</script>
+<style type="text/css">
+	.yonyouColor{
+		background:#FF0000; 
+		color:#FFF
+	}
+
+
+	.selfBtn-defaultRed:hover {
+	  color: #333;
+	  background-color:#FF0000; 
+	  border-color: #adadad;
+	}
+
+	/* 弹出遮挡层  */
+	#dropBack{
+		display:none;
+		height:100%; width:100%;
+	    background-color: #AAA;
+	    opacity: 0.3;
+	    filter: alpha(opacity=30);
+	    position: fixed;
+	    top: 0;
+	    z-index:99999;
+	}
+
+	.mar-btm5 {
+		margin-bottom: 10px;
+	}
+	.padding5 {
+		padding: 5px;
+	}
+	.comment {
+		text-align: center;
+		height: 30px;
+		line-height: 30px;
+		border-bottom: 1px solid #eae7e7;
+		color: #8e8888;
+	}
+	.down5 {
+		position: relative;
+		top: 5px;
+	}
+
+</style>
+  </head>
+  
+  <body>
+    <input type="hidden" id="defaultpid" value="-1"/>
+    <input type="hidden" id="defaultcid" value="-1"/>
+    <input type="hidden" id="appPath" value="http://115.28.245.200:80/pdmwx"/>
+    <input type="hidden" id="bindEnterprise" value=""/>
+    	<br>
+    <div id="dropBack"></div>
+    <div class="comment">请选择您所属的企业</div>
+    <br>
+    <div class="row mar-btm5">
+    	<div class="col-xs-3 text-right down5"><label for="selProvience">省份</label></div>
+    	<div class="col-xs-9 text-left">
+    		<select id="selProvience" name="selProvience" class="padding5" style="width:80%">
+				
+				<option value="-1">请选择</option>
+				
+				<option value="1">北京市</option>
+				
+				<option value="2">天津市</option>
+				
+				<option value="3">河北省</option>
+				
+				<option value="4">山西省</option>
+				
+				<option value="5">内蒙古自治区</option>
+				
+				<option value="6">辽宁省</option>
+				
+				<option value="7">吉林省</option>
+				
+				<option value="8">黑龙江省</option>
+				
+				<option value="9">上海市</option>
+				
+				<option value="10">江苏省</option>
+				
+				<option value="11">浙江省</option>
+				
+				<option value="12">安徽省</option>
+				
+				<option value="13">福建省</option>
+				
+				<option value="14">江西省</option>
+				
+				<option value="15">山东省</option>
+				
+				<option value="16">河南省</option>
+				
+				<option value="17">湖北省</option>
+				
+				<option value="18">湖南省</option>
+				
+				<option value="19">广东省</option>
+				
+				<option value="20">广西壮族自治区</option>
+				
+				<option value="21">海南省</option>
+				
+				<option value="22">重庆市</option>
+				
+				<option value="23">四川省</option>
+				
+				<option value="24">贵州省</option>
+				
+				<option value="25">云南省</option>
+				
+				<option value="26">西藏自治区</option>
+				
+				<option value="27">陕西省</option>
+				
+				<option value="28">甘肃省</option>
+				
+				<option value="29">青海省</option>
+				
+				<option value="30">宁夏回族自治区</option>
+				
+				<option value="31">新疆维吾尔自治区</option>
+				
+				<option value="32">香港特别行政区</option>
+				
+				<option value="33">澳门特别行政区</option>
+				
+				<option value="34">台湾省</option>
+				
+			</select>
+    	</div>
+    </div>
+    <div class="row mar-btm5">
+    	<div class="col-xs-3 text-right down5"><label for="selCity">城市</label></div>
+    	<div class="col-xs-9 text-left">
+    		<select id="selCity" class="padding5" name="selCity" style="width:80%">
+<!--     		<option value="-1">请选择</option> -->
+				
+				<option value="-1">请选择</option>
+				
+			</select>
+    	</div>
+    </div>
+    
+    <div class="row mar-btm5">
+    	<div class="col-xs-3 text-right down5"><label for="selEnterprise">企业</label></div>
+    	<div class="col-xs-9 text-left">
+    		<select id="selEnterprise" class="padding5" name="selEnterprise" style="width:80%">
+<!--     		<option value="-1">请选择</option> -->
+				
+			</select>
+    	</div>
+    </div>
+    <br>
+    <div class="comment">请填写您的PLM用户名以及密码</div>
+    <br>
+    <div class="row mar-btm5">
+    	<div class="col-xs-3 text-right"><label for="userName">用户名</label></div>
+    	<div class="col-xs-9 text-left">
+    		<input type="text" style="width:80%" size="20" id="userName" maxlength="30"/>
+    	</div>
+    </div>
+    
+    <div class="row">
+    	<div class="col-xs-3 text-right"><label for="passwd">密码</label></div>
+    	<div class="col-xs-9 text-left">
+    		<input type="password" style="width:80%" id="passwd" size="20" />
+    	</div>
+    </div>
+    
+    <br>
+    <br>
+   	<div class="row">
+    	<div class="col-xs-1 text-right"></div>
+    	<div class="col-xs-10 text-left">
+    		<input class="btn btn-default selfBtn-defaultRed yonyouColor btn-block"
+    		type="button" id="userBindBtn" value="绑定"/>
+    	</div>
+    	<div class="col-xs-1 text-right"></div>
+    </div>
+    <br>
+<br>
+
+<div class="row">
+	<div class="col-xs-11 text-right">
+		<img src="../img/logo.png" class="img-rounded" style="width:90px;height:30px">
+	</div> 
+	<div class="col-xs-1"></div>
+</div>
+
+  </body>
+</html>

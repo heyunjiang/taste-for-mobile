@@ -1,0 +1,36 @@
+<!DOCTYPE>  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">  
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>  
+<title>Online View PDF</title>  
+<style>
+	.right-content {
+		position: absolute;
+		left: 820px;
+		top: 20px;
+	}
+	ul li {
+		list-style: none;
+	}
+</style>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script> 
+<script type="text/javascript" src="jquery.media.js"></script>  
+<script type="text/javascript">  
+    $(function() {  
+        $('a.media').media({width:800, height:800});  
+    });  
+</script>  
+</head>  
+   
+<body>  
+	<a class="media" href="../test.pdf"></a> 
+	<div class="right-content">
+		<ul>
+			<li>文档编码： Doc-0001</li>
+			<li>文档编码： Doc-0001</li>
+			<li>文档编码： Doc-0001</li>
+			<li>文档编码： Doc-0001</li>
+			<li>文档编码： Doc-0001</li>
+		</ul>
+	</div>
+</body>  
+</html>

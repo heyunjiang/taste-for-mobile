@@ -1,0 +1,1194 @@
+
+
+<html ng-app="showDetailApp">
+<head>
+<title>任务详情</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, 
+user-scalable=no" />
+<meta name="misapplication-tap-highlight" content="no" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="MobileOptimized" content="320" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="../css/bootstrap.min.css"
+	rel="stylesheet" type="text/css" />
+<link
+	href="../css/wx/showDetail.css?timeStamp=1514355791415"
+	rel="stylesheet" type="text/css" />
+</head>
+
+<body ng-controller="showDetailController">
+	<div id="dropBack"></div>
+
+	<input type="hidden" id="taskId" value="5754" />
+	<input type="hidden" id="taskType" value="PROJECT_TASK" />
+	<input type="hidden" id="receivetime" value="" />
+	<input type="hidden" id="personId" value="28"/>
+	<input type="hidden" id="tpsPersonId" value="olre1whVHbxI5q3H4yTqPxa8SQ-I"/>
+	<input type="hidden" id="activeid" value="" />
+	<input type="hidden" id="tranpersonsID"/>
+	<div>
+		<div class="modal fade myVerticalCenter" id="waitModal"
+			data-backdrop="static" tabindex="-2" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<img src="../img/load.gif" />加载数据中，请等待...
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 变更申请书详情 -->
+	<div>
+		<div class="modal fade" id="chgApplyBookDetailModal"
+			data-backdrop="static" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" aria-hidden="true"
+							ng-click="chgApplyBookDetailModalClose()">&times;</button>
+						<h4 class="text-center">变更申请书详情</h4>
+					</div>
+					<div class="modal-body">
+						<div class="text-left specialTitle">编码：</div>
+						<div class="text-left changeLine">{{detailObject.chgApplyNum}}</div>
+						<hr>
+						<!-- <div class="text-left">名称：</div>
+					<div class="text-left changeLine">{{detailObject.chgApplyName}}</div> 
+					<hr>-->
+						<div class="text-left specialTitle">状态：</div>
+						<div class="text-left changeLine">{{detailObject.status}}</div>
+						<hr>
+						<div class="text-left specialTitle">创建人：</div>
+						<div class="text-left changeLine">{{detailObject.createPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">创建时间：</div>
+						<div class="text-left changeLine">{{detailObject.createTime}}</div>
+						<hr>
+						<div ng-repeat="addFiled in detailObject.addFileds">
+							<div class="text-left specialTitle">{{addFiled.fieldName}}：</div>
+							<div class="text-left changeLine">{{addFiled.fieldValue}}</div>
+							<hr>
+						</div>
+						<div class="text-left specialTitle">文档变更：</div>
+						<table class="table table-bordered"
+							ng-show="detailObject.relatedDocs.length != 0">
+							<thead>
+								<tr>
+									<th>文档编码</th>
+									<th>文档名称</th>
+									<th>文档版本</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="docInfo in detailObject.relatedDocs">
+									<td class="changeLine">{{docInfo.docNum}}</td>
+									<td class="changeLine">{{docInfo.docName}}</td>
+									<td class="changeLine">{{docInfo.docVer}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="text-left specialTitle">设计BOM变更：</div>
+						<table class="table table-bordered"
+							ng-show="detailObject.relatedDesignBom.length != 0">
+							<thead>
+								<tr>
+									<th>物料编码</th>
+									<th>物料名称</th>
+									<th>物料版本</th>
+									<th>所属BOM</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="designBom in detailObject.relatedDesignBom">
+									<td class="changeLine">{{designBom.materailNum}}</td>
+									<td class="changeLine">{{designBom.materailName}}</td>
+									<td class="changeLine">{{designBom.materailVer}}</td>
+									<td class="changeLine">{{designBom.belongBom}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="text-left specialTitle">工艺BOM变更：</div>
+						<table class="table table-bordered"
+							ng-show="detailObject.relatedTechnicsBom.length != 0">
+							<thead>
+								<tr>
+									<th>物料编码</th>
+									<th>物料名称</th>
+									<th>物料版本</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="technicsBom in detailObject.relatedTechnicsBom">
+									<td class="changeLine">{{technicsBom.materailNum}}</td>
+									<td class="changeLine">{{technicsBom.materailName}}</td>
+									<td class="changeLine">{{technicsBom.materailVer}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="text-left specialTitle">工序变更：</div>
+						<table class="table table-bordered"
+							ng-show="detailObject.relatedTechnicsProcess.length != 0">
+							<thead>
+								<tr>
+									<th>工序编码</th>
+									<th>工序名称</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr
+									ng-repeat="technicsProcess in detailObject.relatedTechnicsProcess">
+									<td class="changeLine">{{technicsProcess.technicNum}}</td>
+									<td class="changeLine">{{technicsProcess.technicName}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success"
+							ng-click="chgApplyBookDetailModalClose()">关闭</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
+	</div>
+
+	<!-- bom结构table -->
+	<div>
+		<div class="modal fade" id="bomStructrueModal" data-backdrop="static"
+			role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" aria-hidden="true"
+							ng-click="bomStructrueModalClose()">&times;</button>
+						<h4 class="text-center">{{dataObject.bomName}}</h4>
+					</div>
+					<div class="modal-body">
+						<div class="bomTableColor1">
+							<div class="row">
+								<div class="col-xs-6">物料编码</div>
+								<div class="col-xs-6">物料版本</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-6">物料名称</div>
+								<div class="col-xs-6">BOM数量</div>
+							</div>
+						</div>
+						<div ng-repeat="bomStructuresData in bomStructuresDatas">
+							<div class="bomTableColor2" ng-show="{{$index%2 == 0}}">
+								<div class="row">
+									<div class="col-xs-6">{{bomStructuresData.freeitem2}}</div>
+									<div class="col-xs-6">{{bomStructuresData.freeitem3}}</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-6">{{bomStructuresData.freeitem1}}</div>
+									<div class="col-xs-6">{{bomStructuresData.freeitem4}}</div>
+								</div>
+							</div>
+							<div class="bomTableColor1" ng-show="{{$index%2 == 1}}">
+								<div class="row">
+									<div class="col-xs-6">{{bomStructuresData.freeitem2}}</div>
+									<div class="col-xs-6">{{bomStructuresData.freeitem3}}</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-6">{{bomStructuresData.freeitem1}}</div>
+									<div class="col-xs-6">{{bomStructuresData.freeitem4}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-success"
+							ng-click="bomStructrueModalClose()">关闭</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
+	</div>
+
+	<!-- 变更申请书 和 变更通知 -->
+	<div>
+		<div class="modal fade" id="docDetailModal" data-backdrop="static"
+			role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" aria-hidden="true"
+							ng-click="docDetailModalClose()">&times;</button>
+						<h4 class="text-center" ng-show="dataSwitch == 7">变更申请书</h4>
+						<h4 class="text-center" ng-show="dataSwitch == 8">变更通知单</h4>
+					</div>
+					<div class="modal-body">
+						<div class="text-right">
+							<div class="text-left specialTitle">文档编码：</div>
+							<div class="text-left changeLine">{{detailObject.docNum}}</div>
+							<hr>
+							<div class="text-left specialTitle">文档名称：</div>
+							<div class="text-left changeLine">{{detailObject.docName}}</div>
+							<hr>
+							<div class="text-left specialTitle">文档版本：</div>
+							<div class="text-left changeLine">{{detailObject.docVer}}</div>
+							<hr>
+							<div class="text-left specialTitle">类型：</div>
+							<div class="text-left changeLine">{{detailObject.docType}}</div>
+							<hr>
+							<div class="text-left specialTitle">分类：</div>
+							<div class="text-left changeLine">{{detailObject.docClassify}}</div>
+							<hr>
+							<div class="text-left specialTitle">创建人：</div>
+							<div class="text-left changeLine">{{detailObject.createPerson}}</div>
+							<hr>
+							<div class="text-left specialTitle">状态：</div>
+							<div class="text-left changeLine">{{detailObject.docStatus}}</div>
+							<hr>
+							<div class="text-left specialTitle">摘要：</div>
+							<div class="text-left changeLine">{{detailObject.docAbstract}}</div>
+							<hr>
+							<div class="text-left specialTitle">关键字：</div>
+							<div class="text-left changeLine">{{detailObject.docKeyWord}}</div>
+							<hr>
+							<div class="text-left specialTitle">创建时间：</div>
+							<div class="text-left changeLine">{{detailObject.createTime}}</div>
+							<hr>
+							<div class="text-left specialTitle">修改时间：</div>
+							<div class="text-left changeLine">{{detailObject.changeTime}}</div>
+							<hr>
+							<div class="text-left specialTitle">文档格式：</div>
+							<div class="text-left changeLine">{{detailObject.docFormat}}</div>
+							<hr>
+							<div class="text-left specialTitle">文档密级：</div>
+							<div class="text-left changeLine">{{detailObject.docDense}}</div>
+							<hr>
+							<div class="text-left specialTitle">生效时间：</div>
+							<div class="text-left changeLine">{{detailObject.validTime}}</div>
+							<hr>
+							<div class="text-left specialTitle">失效时间：</div>
+							<div class="text-left changeLine">{{detailObject.invalidTime}}</div>
+							<hr>
+							<div class="text-left specialTitle">修改人：</div>
+							<div class="text-left changeLine">{{detailObject.changePerson}}</div>
+							<hr>
+							<div class="text-left specialTitle">备注：</div>
+							<div class="text-left changeLine">{{detailObject.remarks}}</div>
+							<hr>
+							<div ng-repeat="addFiled in detailObject.addFileds">
+								<div class="text-left specialTitle">{{addFiled.fieldName}}：</div>
+								<div class="text-left changeLine">{{addFiled.fieldValue}}</div>
+								<hr>
+							</div>
+							<div class="text-left specialTitle">关联的任务：</div>
+							<table class="table table-bordered"
+								ng-show="detailObject.relatedTasks.length != 0">
+								<thead>
+									<tr>
+										<th>项目编码</th>
+										<th>项目名称</th>
+										<th>任务名称</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="taskInfo in detailObject.relatedTasks">
+										<td class="changeLine">{{taskInfo.belongProjectNum}}</td>
+										<td class="changeLine">{{taskInfo.belongProjectName}}</td>
+										<td class="changeLine">{{taskInfo.taskName}}</td>
+									</tr>
+								</tbody>
+							</table>
+							<hr>
+							<div class="text-left specialTitle">关联的物料：</div>
+							<table class="table table-bordered"
+								ng-show="detailObject.relatedMaterails.length != 0">
+								<thead>
+									<tr>
+										<th>物料编码</th>
+										<th>物料名称</th>
+										<th>物料版本</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="materailIndoc in detailObject.relatedMaterails">
+										<td class="changeLine">{{materailIndoc.materailNum}}</td>
+										<td class="changeLine">{{materailIndoc.materailName}}</td>
+										<td class="changeLine">{{materailIndoc.materailVer}}</td>
+									</tr>
+								</tbody>
+							</table>
+							<hr>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-xs-8 text-left">
+							<a id="dDDownloadInfoId" ng-disabled="dDCanDownload"
+								class="btn btn-success" id="downloadInfoId" target="_blank">下载33</a>{{dDDownloadInfo}}
+						</div>
+						<div class="col-xs-4 text-right">
+							<button type="button" class="btn btn-success"
+								ng-click="docDetailModalClose()">关闭</button>
+						</div>
+
+
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
+	</div>
+
+	<!-- 审批对话框 -->
+	<div>
+		<div class="modal fade" id="approveModal" data-backdrop="static"
+			role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" aria-hidden="true"
+							ng-click="approveModalClose()">&times;</button>
+						<h4 class="text-center">执行审批</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-xs-10 col-xs-offset-1">
+								<textarea rows="6" class="form-control" placeholder="请输入批语"
+									ng-model="approveDescription"></textarea>
+							</div>
+						</div>
+						<br> <br>
+						<div class="row">
+							<div class="col-xs-10 col-xs-offset-1">
+								<button ng-click="tranpersons()"
+									class="btn btn-default selfBtn-defaultRed yonyouColor btn-block">
+									{{approveBtnTran}}</button>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-10 col-xs-offset-1">
+								<button ng-click="approve(0)"
+									class="btn btn-default selfBtn-defaultRed yonyouColor btn-block">
+									{{approveBtnYes}}</button>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-10 col-xs-offset-1">
+								<button ng-click="approve(1)"
+									class="btn btn-default selfBtn-defaultBlue yonyouColorBlue btn-block">
+									{{approveBtnNo}}</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
+	</div>
+
+	<!-- 选转发人对话框 -->
+	<div>
+		<div class="modal fade" id="tranpersonsModal" data-backdrop="static"
+			role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" aria-hidden="true"
+							ng-click="tranpersonsModalColse()">&times;</button>
+						<h4 class="text-center">企业成员</h4>
+					</div>
+					<div class="modal-body">
+						<div id="sort_box" class="sort_box">
+							<div class="sort_list">
+<!-- 								<div data-id='person.personId' class="num_name" onclick="xclick()">{{person.personName}}</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 审批转发-->
+	<div>
+		<div class="modal fade" id="trantasksModal" data-backdrop="static"
+			role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" aria-hidden="true"
+							ng-click="trantasksModalClose()">&times;</button>
+						<h4 class="text-center">审批任务转发</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-xs-10 col-xs-offset-1">
+								<textarea id = "tranresonid" rows="6" class="form-control"
+									placeholder="请输入任务转发给理由"
+									ng-model="transDescription"></textarea>
+							</div>
+						</div>
+						<br> <br>
+						<div class="row">
+							<div class="col-xs-10 col-xs-offset-1">
+								<button ng-click="trantasks()"
+									class="btn btn-default selfBtn-defaultRed yonyouColor btn-block">
+									转发</button>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-10 col-xs-offset-1">
+								<button ng-click="trantasksModalClose()"
+									class="btn btn-default selfBtn-defaultBlue yonyouColorBlue btn-block">
+									取消</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
+	</div>
+
+	<!-- 详情  -->
+	<div class="modal" id="ptDetail" tabindex="-1" role="dialog"
+		aria-labelledby="ptDetailPageLabel" aria-hidden="true"
+		data-backdrop="static">
+		<!--   -->
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" aria-hidden="true"
+						ng-click="ptDetailPageClose()">&times;</button>
+					<div class="row">
+						<div class="col-xs-4 text-right">
+							<img src="../img/taskDetail.png"
+								class="img-rounded" style="width: 60px; height: 60px">
+						</div>
+						<div class="col-xs-6">
+							<br>
+							<div class="text-left">
+								<h4>任务详情</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-body">
+					<!-- 项目任务 -->
+					<div ng-show="dataSwitch == 0">
+						<div class="text-left specialTitle">任务名称：</div>
+						<div class="text-left changeLine">{{dataObject.taskName}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务状态：</div>
+						<div class="text-left changeLine">{{dataObject.taskType}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属项目：</div>
+						<div class="text-left changeLine">{{dataObject.belongProject}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属产品：</div>
+						<div class="text-left changeLine">{{dataObject.belongProduct}}</div>
+						<hr>
+						<div class="text-left specialTitle">创建人：</div>
+						<div class="text-left changeLine">{{dataObject.createPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">执行人：</div>
+						<div class="text-left changeLine">{{dataObject.executePerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">计划开始时间：</div>
+						<div class="text-left changeLine">{{dataObject.planStartTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">计划结束时间：</div>
+						<div class="text-left changeLine">{{dataObject.planEndTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">最早开始时间：</div>
+						<div class="text-left changeLine">{{dataObject.earliestStartTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">最晚结束时间：</div>
+						<div class="text-left changeLine">{{dataObject.latestEndTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">实际开始时间：</div>
+						<div class="text-left changeLine">{{dataObject.realStartTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">实际结束时间：</div>
+						<div class="text-left changeLine">{{dataObject.realEndTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">预警百分比：</div>
+						<div class="text-left changeLine">{{dataObject.warnPercent}}</div>
+						<hr>
+						<div class="text-left specialTitle">预警时间：</div>
+						<div class="text-left changeLine">{{dataObject.warnTime}}</div>
+						<hr>
+					</div>
+					<!-- 文档修改任务   工艺文档修改任务 -->
+					<div ng-show="dataSwitch == 1">
+						<div class="text-left specialTitle">项目名称：</div>
+						<div class="text-left changeLine">{{dataObject.projectName}}</div>
+						<hr>
+						<div class="text-left specialTitle">项目编码：</div>
+						<div class="text-left changeLine">{{dataObject.projectNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务名称：</div>
+						<div class="text-left changeLine">{{dataObject.taskName}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务状态：</div>
+						<div class="text-left changeLine">{{dataObject.taskStatus}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档编码：</div>
+						<div class="text-left changeLine">{{dataObject.docNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档名称：</div>
+						<div class="text-left changeLine">{{dataObject.docName}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档版本：</div>
+						<div class="text-left changeLine">{{dataObject.docVer}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档格式：</div>
+						<div class="text-left changeLine">{{dataObject.docFormat}}</div>
+						<hr>
+						<div class="text-left specialTitle">修改方式：</div>
+						<div class="text-left changeLine">{{dataObject.changeWay}}</div>
+						<hr>
+						<div class="text-left specialTitle">打回时间：</div>
+						<div class="text-left changeLine">{{dataObject.retTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">发送人：</div>
+						<div class="text-left changeLine">{{dataObject.sendPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">接受人：</div>
+						<div class="text-left changeLine">{{dataObject.receivePerson}}</div>
+						<hr>
+					</div>
+					<!-- 产品结构修改任务 -->
+					<div ng-show="dataSwitch == 2">
+						<div class="text-left specialTitle">项目名称：</div>
+						<div class="text-left changeLine">{{dataObject.projectName}}</div>
+						<hr>
+						<div class="text-left specialTitle">项目编码：</div>
+						<div class="text-left changeLine">{{dataObject.projectNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务名称：</div>
+						<div class="text-left changeLine">{{dataObject.taskName}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务状态：</div>
+						<div class="text-left changeLine">{{dataObject.taskStatus}}</div>
+						<hr>
+						<div class="text-left specialTitle">BOM名称：</div>
+						<div class="text-left changeLine">{{dataObject.bomName}}</div>
+						<hr>
+						<div class="text-left specialTitle">BOM版本：</div>
+						<div class="text-left changeLine">{{dataObject.bomVer}}</div>
+						<hr>
+						<div class="text-left specialTitle">物料编码：</div>
+						<div class="text-left changeLine">{{dataObject.materialNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">物料版本：</div>
+						<div class="text-left changeLine">{{dataObject.materialVer}}</div>
+						<hr>
+						<div class="text-left specialTitle">修改方式：</div>
+						<div class="text-left changeLine">{{dataObject.changeWay}}</div>
+						<hr>
+						<div class="text-left specialTitle">打回时间：</div>
+						<div class="text-left changeLine">{{dataObject.retTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">发送人：</div>
+						<div class="text-left changeLine">{{dataObject.sendPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">接受人：</div>
+						<div class="text-left changeLine">{{dataObject.receivePerson}}</div>
+						<hr>
+					</div>
+					<!-- 工艺结构修改任务 -->
+					<div ng-show="dataSwitch == 3">
+						<div class="text-left specialTitle">项目名称：</div>
+						<div class="text-left changeLine">{{dataObject.projectName}}</div>
+						<hr>
+						<div class="text-left specialTitle">项目编码：</div>
+						<div class="text-left changeLine">{{dataObject.projectNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务名称：</div>
+						<div class="text-left changeLine">{{dataObject.taskName}}</div>
+						<hr>
+						<div class="text-left specialTitle">物料名称：</div>
+						<div class="text-left changeLine">{{dataObject.materialName}}</div>
+						<hr>
+						<div class="text-left specialTitle">物料版本：</div>
+						<div class="text-left changeLine">{{dataObject.materialVer}}</div>
+						<hr>
+						<div class="text-left specialTitle">物料编码：</div>
+						<div class="text-left changeLine">{{dataObject.materialNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务状态：</div>
+						<div class="text-left changeLine">{{dataObject.taskStatus}}</div>
+						<hr>
+						<div class="text-left specialTitle">工艺版本：</div>
+						<div class="text-left changeLine">{{dataObject.technicStatus}}</div>
+						<hr>
+						<div class="text-left specialTitle">修改方式：</div>
+						<div class="text-left changeLine">{{dataObject.changeWay}}</div>
+						<hr>
+						<div class="text-left specialTitle">打回时间：</div>
+						<div class="text-left changeLine">{{dataObject.retTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">发送人：</div>
+						<div class="text-left changeLine">{{dataObject.sendPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">接受人：</div>
+						<div class="text-left changeLine">{{dataObject.receivePerson}}</div>
+						<hr>
+					</div>
+					<!-- 文档任务 -->
+					<div ng-show="dataSwitch == 4">
+						<div class="text-left specialTitle">审签节点名称：</div>
+						<div class="text-left changeLine">{{dataObject.shenqianNoteName}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档版本：</div>
+						<div class="text-left changeLine">{{dataObject.docVer}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档编码：</div>
+						<div class="text-left changeLine">{{dataObject.docNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档名称：</div>
+						<div class="text-left changeLine">{{dataObject.docName}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档格式：</div>
+						<div class="text-left changeLine">{{dataObject.docType}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档分类：</div>
+						<div class="text-left changeLine">{{dataObject.docClassify}}</div>
+						<hr>
+						<div class="text-left specialTitle">提交人：</div>
+						<div class="text-left changeLine">{{dataObject.sumbitPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档提交时间：</div>
+						<div class="text-left changeLine">{{dataObject.sumbitTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">状态：</div>
+						<div class="text-left changeLine">{{dataObject.status}}</div>
+						<hr>
+						<div class="text-left specialTitle">项目编码：</div>
+						<div class="text-left changeLine">{{dataObject.projectNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务到达时间：</div>
+						<div class="text-left changeLine">{{dataObject.taskArriveTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务所属人：</div>
+						<div class="text-left changeLine">{{dataObject.receivePerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务类型：</div>
+						<div class="text-left changeLine">{{dataObject.taskType}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属任务：</div>
+						<div class="text-left changeLine">{{dataObject.belongTask}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属产品：</div>
+						<div class="text-left changeLine">{{dataObject.belongProduct}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属项目：</div>
+						<div class="text-left changeLine">{{dataObject.belongProject}}</div>
+						<hr>
+						<div class="text-left specialTitle">流程名称：</div>
+						<div class="text-left changeLine">{{dataObject.belongProcedure}}</div>
+						<hr>
+						<div class="text-left specialTitle">流程图：</div>
+						<div class="row clearfix"
+							ng-repeat="flowItem in flowItems.slice(0,flowItems.length-1)">
+							<div class="row-left">{{flowItem.time}}</div>
+							<div class="circle-wrapper">
+								<div class="circleBlue"
+									ng-show={{flowItem.state==2||flowItem.state==3}}></div>
+								<div class="circleGray" ng-show={{flowItem.state==1}}></div>
+								<div class="circleGreen"
+									ng-show={{flowItem.state!=1&&flowItem.state!=2&&flowItem.state!=3}}></div>
+							</div>
+							<div class="row-right">{{flowItem.detail}}</div>
+						</div>
+						<div class="row clearfix" ng-show="flowItems.length>=1">
+							<div class="row-left2">{{flowItems[flowItems.length-1].time}}</div>
+							<div class="circle-wrapper1">
+								<div class="circleBlue"
+									ng-show="flowItems[flowItems.length-1].state==2||flowItems[flowItems.length-1].state==3"></div>
+								<div class="circleGray"
+									ng-show="flowItems[flowItems.length-1].state==1"></div>
+								<div class="circleGreen"
+									ng-show="(flowItems[flowItems.length-1].state!=1)&&(flowItems[flowItems.length-1].state!=2)&&(flowItems[flowItems.length-1].state!=3)"></div>
+							</div>
+							<div class="row-right2">{{flowItems[flowItems.length-1].detail}}</div>
+						</div>
+						<div class="text-center" ng-show="flowItems.length==0">流程图获取失败！</div>
+					</div>
+					<!-- BOM任务 -->
+					<div ng-show="dataSwitch == 5">
+						<div class="text-left specialTitle">流程名称：</div>
+						<div class="text-left changeLine">{{dataObject.procedureName}}</div>
+						<hr>
+						<div class="text-left specialTitle">审签节点名称：</div>
+						<div class="text-left changeLine">{{dataObject.shenqianNoteName}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务到达时间：</div>
+						<div class="text-left changeLine">{{dataObject.projectArriveTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">Bom类型：</div>
+						<div class="text-left changeLine">{{dataObject.bomType}}</div>
+						<hr>
+						<div class="text-left specialTitle">Bom名称：</div>
+						<div class="text-left changeLine"
+							ng-show="dataObject.bomType!='工艺BOM'">{{dataObject.bomName}}</div>
+						<hr>
+						<div class="text-left specialTitle">Bom版本：</div>
+						<div class="text-left changeLine">{{dataObject.bomVer}}</div>
+						<hr>
+						<div class="text-left specialTitle">项目编码：</div>
+						<div class="text-left changeLine">{{dataObject.projectNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">物料编码：</div>
+						<div class="text-left changeLine">{{dataObject.materialNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">物料版本：</div>
+						<div class="text-left changeLine">{{dataObject.materialVer}}</div>
+						<hr>
+						<div class="text-left specialTitle">物料名称：</div>
+						<div class="text-left changeLine">{{dataObject.materialName}}</div>
+						<hr>
+						<div class="text-left specialTitle">工艺版本：</div>
+						<div class="text-left changeLine">{{dataObject.technicVer}}</div>
+						<hr>
+						<div class="text-left specialTitle">提交人：</div>
+						<div class="text-left changeLine">{{dataObject.sumbitPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">状态：</div>
+						<div class="text-left changeLine">{{dataObject.status}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务类型：</div>
+						<div class="text-left changeLine">{{dataObject.taskType}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属任务：</div>
+						<div class="text-left changeLine">{{dataObject.belongTask}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属产品：</div>
+						<div class="text-left changeLine">{{dataObject.belongProduct}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属项目：</div>
+						<div class="text-left changeLine">{{dataObject.belongProject}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务所属人：</div>
+						<div class="text-left changeLine">{{dataObject.projectBelongPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">流程图：</div>
+						<div class="row clearfix"
+							ng-repeat="flowItem in flowItems.slice(0,flowItems.length-1)">
+							<div class="row-left">{{flowItem.time}}</div>
+							<div class="circle-wrapper">
+								<div class="circleBlue"
+									ng-show={{flowItem.state==2||flowItem.state==3}}></div>
+								<div class="circleGray" ng-show={{flowItem.state==1}}></div>
+								<div class="circleGreen"
+									ng-show={{flowItem.state!=1&&flowItem.state!=2&&flowItem.state!=3}}></div>
+							</div>
+							<div class="row-right">{{flowItem.detail}}</div>
+						</div>
+						<div class="row clearfix" ng-show="flowItems.length>=1">
+							<div class="row-left2">{{flowItems[flowItems.length-1].time}}</div>
+							<div class="circle-wrapper1">
+								<div class="circleBlue"
+									ng-show="flowItems[flowItems.length-1].state==2||flowItems[flowItems.length-1].state==3"></div>
+								<div class="circleGray"
+									ng-show="flowItems[flowItems.length-1].state==1"></div>
+								<div class="circleGreen"
+									ng-show="(flowItems[flowItems.length-1].state!=1)&&(flowItems[flowItems.length-1].state!=2)&&(flowItems[flowItems.length-1].state!=3)"></div>
+							</div>
+							<div class="row-right2">{{flowItems[flowItems.length-1].detail}}</div>
+						</div>
+						<div class="text-center" ng-show="flowItems.length==0">流程图获取失败！</div>
+					</div>
+					<!-- 工艺任务 -->
+					<div ng-show="dataSwitch == 6">
+						<div class="text-left specialTitle">审签节点名称：</div>
+						<div class="text-left changeLine">{{dataObject.shenqianNoteName}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档版本：</div>
+						<div class="text-left changeLine">{{dataObject.docVer}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档编码：</div>
+						<div class="text-left changeLine">{{dataObject.docNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档名称：</div>
+						<div class="text-left changeLine">{{dataObject.docName}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档格式：</div>
+						<div class="text-left changeLine">{{dataObject.docType}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档分类：</div>
+						<div class="text-left changeLine">{{dataObject.docClassify}}</div>
+						<hr>
+						<div class="text-left specialTitle">提交人：</div>
+						<div class="text-left changeLine">{{dataObject.sumbitPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档提交时间：</div>
+						<div class="text-left changeLine">{{dataObject.sumbitTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">状态：</div>
+						<div class="text-left changeLine">{{dataObject.status}}</div>
+						<hr>
+						<div class="text-left specialTitle">项目编码：</div>
+						<div class="text-left changeLine">{{dataObject.projectNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务到达时间：</div>
+						<div class="text-left changeLine">{{dataObject.taskArriveTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务所属人：</div>
+						<div class="text-left changeLine">{{dataObject.projectBelongPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务类型：</div>
+						<div class="text-left changeLine">{{dataObject.taskType}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属任务：</div>
+						<div class="text-left changeLine">{{dataObject.belongTask}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属产品：</div>
+						<div class="text-left changeLine">{{dataObject.belongProduct}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属项目：</div>
+						<div class="text-left changeLine">{{dataObject.belongProject}}</div>
+						<hr>
+						<div class="text-left specialTitle">流程名称：</div>
+						<div class="text-left changeLine">{{dataObject.belongProcedure}}</div>
+						<hr>
+					</div>
+					<!-- 变更申请审签任务 -->
+					<div ng-show="dataSwitch == 7">
+						<div class="text-left specialTitle">审签节点名称：</div>
+						<div class="text-left changeLine">{{dataObject.shenqianNoteName}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务到达时间：</div>
+						<div class="text-left changeLine">{{dataObject.taskArriveTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">变更申请单编号：</div>
+						<div class="text-left changeLine">{{dataObject.changeApplyNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">提交人：</div>
+						<div class="text-left changeLine">{{dataObject.sumbitPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">状态：</div>
+						<div class="text-left changeLine">{{dataObject.status}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务类型：</div>
+						<div class="text-left changeLine">{{dataObject.taskType}}</div>
+						<hr>
+						<div class="text-left specialTitle">变更申请单名称：</div>
+						<div class="text-left changeLine">{{dataObject.changeApplyName}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属任务：</div>
+						<div class="text-left changeLine">{{dataObject.belongTask}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务所属人：</div>
+						<div class="text-left changeLine">{{dataObject.taskBelongPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">流程名称：</div>
+						<div class="text-left changeLine">{{dataObject.belongProcedure}}</div>
+						<hr>
+						<div class="text-left specialTitle">流程图：</div>
+						<div class="row clearfix"
+							ng-repeat="flowItem in flowItems.slice(0,flowItems.length-1)">
+							<div class="row-left">{{flowItem.time}}</div>
+							<div class="circle-wrapper">
+								<div class="circleBlue"
+									ng-show={{flowItem.state==2||flowItem.state==3}}></div>
+								<div class="circleGray" ng-show={{flowItem.state==1}}></div>
+								<div class="circleGreen"
+									ng-show={{flowItem.state!=1&&flowItem.state!=2&&flowItem.state!=3}}></div>
+							</div>
+							<div class="row-right">{{flowItem.detail}}</div>
+						</div>
+						<div class="row clearfix" ng-show="flowItems.length>=1">
+							<div class="row-left2">{{flowItems[flowItems.length-1].time}}</div>
+							<div class="circle-wrapper1">
+								<div class="circleBlue"
+									ng-show="flowItems[flowItems.length-1].state==2||flowItems[flowItems.length-1].state==3"></div>
+								<div class="circleGray"
+									ng-show="flowItems[flowItems.length-1].state==1"></div>
+								<div class="circleGreen"
+									ng-show="(flowItems[flowItems.length-1].state!=1)&&(flowItems[flowItems.length-1].state!=2)&&(flowItems[flowItems.length-1].state!=3)"></div>
+							</div>
+							<div class="row-right2">{{flowItems[flowItems.length-1].detail}}</div>
+						</div>
+						<div class="text-center" ng-show="flowItems.length==0">流程图获取失败！</div>
+					</div>
+					<!-- 变更审签任务 -->
+					<div ng-show="dataSwitch == 8">
+						<div class="text-left specialTitle">审签节点名称：</div>
+						<div class="text-left changeLine">{{dataObject.shenqianNoteName}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务到达时间：</div>
+						<div class="text-left changeLine">{{dataObject.projectArriveTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务名称：</div>
+						<div class="text-left changeLine">{{dataObject.taskName}}</div>
+						<hr>
+						<div class="text-left specialTitle">提交人：</div>
+						<div class="text-left changeLine">{{dataObject.sumbitPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">提交时间：</div>
+						<div class="text-left changeLine">{{dataObject.sumbitTime}}</div>
+						<hr>
+						<div class="text-left specialTitle">状态：</div>
+						<div class="text-left changeLine">{{dataObject.status}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务类型：</div>
+						<div class="text-left changeLine">{{dataObject.taskType}}</div>
+						<hr>
+						<div class="text-left specialTitle">项目编码：</div>
+						<div class="text-left changeLine">{{dataObject.projectNum}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属任务：</div>
+						<div class="text-left changeLine">{{dataObject.belongTask}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属项目：</div>
+						<div class="text-left changeLine">{{dataObject.belongProject}}</div>
+						<hr>
+						<div class="text-left specialTitle">所属产品：</div>
+						<div class="text-left changeLine">{{dataObject.belongProduct}}</div>
+						<hr>
+						<div class="text-left specialTitle">任务所属人：</div>
+						<div class="text-left changeLine">{{dataObject.taskBelongPerson}}</div>
+						<hr>
+						<div class="text-left specialTitle">流程名称：</div>
+						<div class="text-left changeLine">{{dataObject.belongProcedure}}</div>
+						<hr>
+						<div class="text-left specialTitle">流程图：</div>
+						<div class="row clearfix"
+							ng-repeat="flowItem in flowItems.slice(0,flowItems.length-1)">
+							<div class="row-left">{{flowItem.time}}</div>
+							<div class="circle-wrapper">
+								<div class="circleBlue"
+									ng-show={{flowItem.state==2||flowItem.state==3}}></div>
+								<div class="circleGray" ng-show={{flowItem.state==1}}></div>
+								<div class="circleGreen"
+									ng-show={{flowItem.state!=1&&flowItem.state!=2&&flowItem.state!=3}}></div>
+							</div>
+							<div class="row-right">{{flowItem.detail}}</div>
+						</div>
+						<div class="row clearfix" ng-show="flowItems.length>=1">
+							<div class="row-left2">{{flowItems[flowItems.length-1].time}}</div>
+							<div class="circle-wrapper1">
+								<div class="circleBlue"
+									ng-show="flowItems[flowItems.length-1].state==2||flowItems[flowItems.length-1].state==3"></div>
+								<div class="circleGray"
+									ng-show="flowItems[flowItems.length-1].state==1"></div>
+								<div class="circleGreen"
+									ng-show="(flowItems[flowItems.length-1].state!=1)&&(flowItems[flowItems.length-1].state!=2)&&(flowItems[flowItems.length-1].state!=3)"></div>
+							</div>
+							<div class="row-right2">{{flowItems[flowItems.length-1].detail}}</div>
+						</div>
+						<div class="text-center" ng-show="flowItems.length==0">流程图获取失败！</div>
+					</div>
+
+					<!-- 下发文档 -->
+					<div ng-show="dataSwitch == 9">
+						<div class="text-left specialTitle">文档名称：</div>
+						<div class="text-left changeLine">{{dataObject.docname}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档编码：</div>
+						<div class="text-left changeLine">{{dataObject.docid}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档版本：</div>
+						<div class="text-left changeLine">{{dataObject.docver}}</div>
+						<hr>
+						<div class="text-left specialTitle">下发时间：</div>
+						<div class="text-left changeLine">{{dataObject.receivetime}}</div>
+						<hr>
+						<div class="text-left specialTitle">有效期：</div>
+						<div class="text-left changeLine">{{dataObject.vaildtime}}
+							&nbsp;至&nbsp; {{dataObject.trashtime}}</div>
+						<hr>
+						<div class="text-left specialTitle">下发权限：</div>
+						<div class="text-left changeLine">{{dataObject.authority}}</div>
+						<hr>
+					</div>
+					<!-- 变更通知-->
+					<div ng-show="dataSwitch == 10">
+						<div class="text-left specialTitle">变更通知名称：</div>
+						<div class="text-left changeLine">{{dataObject.docname}}</div>
+						<hr>
+						<div class="text-left specialTitle">变更通知编码：</div>
+						<div class="text-left changeLine">{{dataObject.docid}}</div>
+						<hr>
+						<div class="text-left specialTitle">变更通知版本：</div>
+						<div class="text-left changeLine">{{dataObject.docver}}</div>
+						<hr>
+						<div class="text-left specialTitle">下发时间：</div>
+						<div class="text-left changeLine">{{dataObject.receivetime}}</div>
+						<hr>
+						<div class="text-left specialTitle">文档变更：</div>
+						<table class="table table-bordered"
+							ng-show="dataObject.relateddoc.length != 0">
+							<thead>
+								<tr>
+									<th>文档编码</th>
+									<th>文档名称</th>
+									<th>文档版本</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="docInfo in dataObject.relateddoc">
+									<td class="changeLine">{{docInfo.docid}}</td>
+									<td class="changeLine">{{docInfo.docname}}</td>
+									<td class="changeLine">{{docInfo.docver}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="text-left specialTitle">设计BOM变更：</div>
+						<table class="table table-bordered"
+							ng-show="dataObject.relatedbom.length != 0">
+							<thead>
+								<tr>
+									<th>物料编码</th>
+									<th>物料名称</th>
+									<th>物料版本</th>
+									<th>所属BOM</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="designBom in dataObject.relatedbom">
+									<td class="changeLine">{{designBom.partid}}</td>
+									<td class="changeLine">{{designBom.partname}}</td>
+									<td class="changeLine">{{designBom.partver}}</td>
+									<td class="changeLine">{{designBom.bomname}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="text-left specialTitle">工艺BOM变更：</div>
+						<table class="table table-bordered"
+							ng-show="dataObject.relatedtechbom.length != 0">
+							<thead>
+								<tr>
+									<th>物料编码</th>
+									<th>物料名称</th>
+									<th>物料版本</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="technicsBom in dataObject.relatedtechbom">
+									<td class="changeLine">{{technicsBom.partid}}</td>
+									<td class="changeLine">{{technicsBom.partname}}</td>
+									<td class="changeLine">{{technicsBom.partver}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+						<div class="text-left specialTitle">工序变更：</div>
+						<table class="table table-bordered"
+							ng-show="dataObject.relatedtechprc.length != 0">
+							<thead>
+								<tr>
+									<th>工序编码</th>
+									<th>工序名称</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="technicsProcess in dataObject.relatedtechprc">
+									<td class="changeLine">{{technicsProcess.techprcid}}</td>
+									<td class="changeLine">{{technicsProcess.techprcver}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<hr>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<!-- 文档 -->
+					<div class="row" ng-show="dataSwitch == 4 && meterialApplyHiden">
+						<div class="col-xs-8 text-left">
+							<!-- <a ng-show="ptShowDownload" ng-disabled="ptCanDownload"
+								class="btn btn-success" href="#" id="ptDownloadInfoId" target="_blank">下载</a>{{ptDownloadInfo}} -->
+							<button ng-show="ptShowDownload" type="button"
+								class="btn btn-success" onclick="this.innerHTML='下载中...';this.setAttribute('disabled','true')">下载</button>
+						</div>
+						<div class="col-xs-4 text-right">
+							<button ng-show="notAlreadyApprove" type="button"
+								class="btn btn-success" ng-click="openApproveModal()">审批</button>
+						</div>
+					</div>
+					<!-- bom审批 -->
+					<div class="row" ng-show="dataSwitch == 5">
+						<div class="col-xs-8 text-left">
+							<a class="btn btn-success" ng-click="getStructrue()">结构</a>
+						</div>
+						<div class="col-xs-4 text-right">
+							<button ng-show="notAlreadyApprove" type="button"
+								class="btn btn-success" ng-click="openApproveModal()">审批</button>
+						</div>
+					</div>
+
+					<!-- 变更审批任务-->
+					<div class="row" ng-show="dataSwitch == 7">
+						<div class="col-xs-8 text-left">
+							<a class="btn btn-success" ng-click="chgApplyBook()">变更申请</a>
+						</div>
+						<div class="col-xs-4 text-right">
+							<button ng-show="notAlreadyApprove" type="button"
+								class="btn btn-success" ng-click="openApproveModal()">审批</button>
+						</div>
+					</div>
+
+					<!-- 变更审批任务-->
+					<div class="row" ng-show="dataSwitch == 8">
+						<div class="col-xs-8 text-left">
+							<a class="btn btn-success" ng-click="chgNotifyList()">变更通知</a>
+						</div>
+						<div class="col-xs-4 text-right">
+							<button ng-show="notAlreadyApprove" type="button"
+								class="btn btn-success" ng-click="openApproveModal()">审批</button>
+						</div>
+					</div>
+
+					<div class="row" ng-show="dataSwitch==9 || dataSwitch==10">
+						<div class="col-xs-8 text-left">
+							<a ng-show="ptShowDownload" ng-disabled="ptCanDownload"
+								class="btn btn-success" href="#" id="ptDownloadChgInfoid" target="_blank">下载22</a>{{ptDownloadInfo}}
+							<!-- 								<a -->
+							<!-- 								class="btn btn-success" href="#" id="ptDownloadInfoId">下载</a>{{ptDownloadInfo}} -->
+						</div>
+						<div class="col-xs-4 text-right">
+							<button type="button" class="btn btn-success"
+								ng-click="ptDetailPageClose()">关闭</button>
+						</div>
+					</div>
+					<div
+						ng-show="dataSwitch != 4 && dataSwitch != 5 &&
+					dataSwitch != 7 && dataSwitch != 8&& dataSwitch != 9&& dataSwitch != 10">
+						<button type="button" class="btn btn-success"
+							ng-click="ptDetailPageClose()">关闭</button>
+					</div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+	</div>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/angular.min.js"></script>
+	<script src="../js/ng-table.js"></script>
+	<script src="../js/spin.js"></script>
+	<script src="../js/jquery.spin.js"></script>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script
+		src="../js/pushTask/jquery.charfirst.pinyin.js?timeStamp=1514355791548"></script>
+	<script
+		src="../js/common/showDetail.js?timeStamp=1514355791548"></script>
+</body>
+
+
+
+</html>
