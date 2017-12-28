@@ -1434,12 +1434,12 @@ pre {
   z-index: 999;
 }
 .cardInfoBox .cardInfoBoxLeft {
-  width: 40%;
+  width: 15%;
   height: 100%;
   float: left;
 }
 .cardInfoBox .cardInfoBoxRight {
-  width: 60%;
+  width: 85%;
   height: 100%;
   background: #fff;
   display: inline-block;

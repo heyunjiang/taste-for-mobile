@@ -11,7 +11,7 @@ class IndexPage extends React.Component {
 	constructor(props) {
         super(props)
         this.state = {
-        	currentUrl: "./dist/index.html#/project",
+        	currentUrl: "./wechat/pdmwx/wx/taskList.html",
         }
     }
     render() {
@@ -40,7 +40,7 @@ class IndexPage extends React.Component {
 		      <div className={styles.contentBox}>
 				<Row>
 			      <Col span={8}>
-			      	<Menu onClick={handleClick} style={{ width: 256 }} defaultOpenKeys={['sub2']} defaultSelectedKeys={['8']} mode="inline">
+			      	<Menu onClick={handleClick} style={{ width: 256 }} defaultOpenKeys={['sub1']} defaultSelectedKeys={['5']} mode="inline">
 						<SubMenu key="sub1" title={<span><Icon type="wechat" /><span>PLM-微信</span></span>}>
 				            <Menu.Item key="1">账户绑定</Menu.Item>
 				            <Menu.Item key="2">消息推送</Menu.Item>

@@ -5,9 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
   <title>项目报表</title>
   <link rel="stylesheet" href="index.css" />
+  <style>
+    body {
+      font-family: 'Open Sans', Arial, Helvetica, Sans-serif, Verdana, Tahoma;
+    }
+    .ant-table-fixed-header .ant-table-scroll .ant-table-header::-webkit-scrollbar,
+    /*.ant-table-fixed-header>.ant-table-content>.ant-table-scroll>.ant-table-body::-webkit-scrollbar,*/
+    body::-webkit-scrollbar {
+      width: 6px;
+      /*height: 6px;*/
+        background-color: #F5F5F5;
+    }
+    /*.ant-table-fixed-header .ant-table-scroll .ant-table-header::-webkit-scrollbar-thumb,*/
+    /*.ant-table-fixed-header>.ant-table-content>.ant-table-scroll>.ant-table-body::-webkit-scrollbar-thumb,*/
+    body::-webkit-scrollbar-thumb {
+      background-color: #dedcdc;
+    }
+  </style>
 </head>
 <body>
 
+    <div style="width: 100%;height: 40px;line-height: 40px;background: #393a3f;color: white;font-size: 14px;">
+        <span style="cursor: pointer;margin-left: 10px;">
+            <span style="width: 10px;height: 10px;display: inline-block;border-bottom: 2px solid white;border-left: 2px solid white;transform: rotate(45deg);"></span>返回</span>
+    </div>
 <div id="root"></div>
 
 

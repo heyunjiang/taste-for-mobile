@@ -16,9 +16,22 @@ user-scalable=no" />
 <link
 	href="../css/wx/showDetail.css?timeStamp=1514355791415"
 	rel="stylesheet" type="text/css" />
+	<style>
+		#ptDetail {
+			padding-left: 0 !important;
+		}
+		#ptDetail::-webkit-scrollbar {
+			width: 6px;
+    		background-color: #F5F5F5;
+		}
+		#ptDetail::-webkit-scrollbar-thumb {
+			background-color: #dedcdc;
+		}
+	</style>
 </head>
 
 <body ng-controller="showDetailController">
+	
 	<div id="dropBack"></div>
 
 	<input type="hidden" id="taskId" value="5754" />

@@ -63,6 +63,26 @@ $(function(){
 });
 
 function receiveAjaxMsg(url,data,dataType,action){
+	console.log(data)
+	if (action=="getCity"){
+		if(data == 'pid=22'){
+			getCity([{"provinceId":"","cityId":"-1","zipCode":"","cityName":"请选择","value":"-1"},
+			{"provinceId":"22","cityId":"234","zipCode":"400000","cityName":"重庆市","value":"重庆市"}]);
+		}else {
+			getCity([{"provinceId":"","cityId":"-1","zipCode":"","cityName":"请选择","value":"-1"},
+			{"provinceId":"1","cityId":"234","zipCode":"400000","cityName":"北京市","value":"北京市"}])
+		}
+	}
+	else if (action=="getEnterprise"){
+		if(data == 'pid=22&cid=234'){
+			getEnterprise([{"correlationEnterprise":"","provinceId":"22","pdmUrl":"http://222.178.39.65:8084/plmES/services/pdmService?wsdl","remark":"","cityId":"234","enterpriseName":"重庆PLM研发中心","cityName":"","state":"1 ","enterpriseId":"","buyYonyouPlm":"","provinceName":"","id":"57","enterpriseAddress":"","stateName":"","countyId":""},
+			{"correlationEnterprise":"","provinceId":"22","pdmUrl":"http://123.103.9.191:1180/plmES/services/pdmService?wsdl","remark":"","cityId":"234","enterpriseName":"重庆利德工业制造有限公司","cityName":"","state":"1 ","enterpriseId":"","buyYonyouPlm":"","provinceName":"","id":"56","enterpriseAddress":"","stateName":"","countyId":""},
+			{"correlationEnterprise":"","provinceId":"22","pdmUrl":"http://222.179.153.60:8081/plmES/services/pdmService?wsdl","remark":"","cityId":"234","enterpriseName":"重庆润通科技有限公司","cityName":"","state":"1 ","enterpriseId":"","buyYonyouPlm":"","provinceName":"","id":"91","enterpriseAddress":"","stateName":"","countyId":""}]);
+		}else {
+			getEnterprise([])
+		}
+	}
+	return ;
 	$("#dropBack").toggle();
 	$.ajax({
 		url:url,
