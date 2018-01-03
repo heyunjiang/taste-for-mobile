@@ -154,20 +154,20 @@ function ($scope, ngTableParams,$routeParams,$location,$http) {
 		}
    		$scope.dataNum = [1,1,1,1];  		
    		$scope.docs = [
-   			{'docNum': 'doc-0001', 'docName': '下发文档1', 'createPerson': '创建人1', 'createTime': '2017-12-27'},
-   			{'docNum': 'doc-0002', 'docName': '下发文档2', 'createPerson': '创建人2', 'createTime': '2017-12-28'},
+   			{'docNum': 'Doc-20170212004', 'docName': 'PLM上线通知', 'createPerson': '李霞', 'createTime': '2017-12-27'},
+   			{'docNum': 'Doc-20170218124', 'docName': 'CAD集成应用规范', 'createPerson': '李霞', 'createTime': '2017-12-28'},
    		];
    		$scope.materails = [
-   			{'materialNum': 'mat-0001', 'materialName': '下发物料1', 'createPerson': '创建人1', 'createTime': '2017-12-27'},
-   			{'materialNum': 'mat-0002', 'materialName': '下发物料2', 'createPerson': '创建人2', 'createTime': '2017-12-28'},
+   			{'materialNum': '2591120262', 'materialName': '前钢板弹簧套筒扳手', 'createPerson': '张强', 'createTime': '2017-12-27'},
+   			{'materialNum': '6597161165', 'materialName': '发动机前悬置支架', 'createPerson': '邓华来', 'createTime': '2016-08-23'},
    		];
    		$scope.chgApply = [
-   			{'chgApplyNum': 'chg-0001', 'chgApplyName': '变更申请1', 'createPerson': '创建人1', 'createTime': '2017-12-27'},
-   			{'chgApplyNum': 'chg-0002', 'chgApplyName': '变更申请2', 'createPerson': '创建人2', 'createTime': '2017-12-28'},
+   			{'chgApplyNum': 'ECA-100-001', 'chgApplyName': '发动机前悬置支架组件', 'createPerson': '邓华来', 'createTime': '2017-12-27'},
+   			{'chgApplyNum': 'ECA-100-002', 'chgApplyName': '发动机前悬置软垫总成', 'createPerson': '邓华来', 'createTime': '2017-12-28'},
    		];
    		$scope.chgTask = [
-   			{'executePerson': '执行人1', 'chgTaskName': '变更任务1', 'createPerson': '创建人1', 'createTime': '2017-12-27', 'status': '完成'},
-   			{'executePerson': '执行人2', 'chgTaskName': '变更任务2', 'createPerson': '创建人2', 'createTime': '2017-12-28', 'status': '审签'},
+   			{'executePerson': '邓华来', 'chgTaskName': '发动机前悬置支架组件', 'createPerson': '邓华来', 'createTime': '2017-12-27', 'status': '完成'},
+   			{'executePerson': '邓华来', 'chgTaskName': '发动机前悬置软垫总成', 'createPerson': '邓华来', 'createTime': '2017-12-28', 'status': '审签'},
    		];
    		// $("#dropBack").toggle();
    		$location.path("/queryResult");
@@ -365,7 +365,7 @@ function ($scope, ngTableParams,$routeParams,$location,$http) {
 			$scope.detailObject = $scope.docs[index];
 		}
 		//$("#waitModal").modal('show');
-		$http({
+		/*$http({
    			method:'POST',
    			url:$scope.projectPath+"/downloadValidate.do",
    			params:{
@@ -375,8 +375,16 @@ function ($scope, ngTableParams,$routeParams,$location,$http) {
 	           	'docType':$scope.detailObject.docFormat,
 	           	'userWXH':$("#wxhHidden").val()
    			}
-   		}).success(function(data,header,config,status){
-   			var tempData = eval(data);	     
+   		}).success(function(data,header,config,status){*/
+   			var tempData = {
+   				code: 'S',
+   				message: '',
+   				documentName: 'test.pdf',
+   				downloadUrl: 'downloadUrl',
+   				uuid: 'uuid',
+   				plmUrlIp: '127.0.0.1',
+   				requestTime: '2017-12-29'
+   			};	     
    			//$("#waitModal").modal('hide');
    			
 	       	if(tempData.code == 'S'){
@@ -428,10 +436,10 @@ function ($scope, ngTableParams,$routeParams,$location,$http) {
 	       	}
 	       	//恢复按钮为可用
 			$scope.downloadDocumentCanUse = false;
-		}).error(function(data,header,config,status){
+		/*}).error(function(data,header,config,status){
 			//恢复按钮为可用
 			$scope.downloadDocumentCanUse = false;
-		});
+		});*/
 		
 	}
 	

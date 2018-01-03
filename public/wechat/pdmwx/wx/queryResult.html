@@ -11,6 +11,13 @@ user-scalable=no" />
 	div.fadeSize{
 	    bottom: 10px;
 	}
+	#detailPage::-webkit-scrollbar {
+		width: 6px;
+		background-color: #F5F5F5;
+	}
+	#detailPage::-webkit-scrollbar-thumb {
+		background-color: #dedcdc;
+	}
 </style>
 
 <div ng-controller="queryResultController">
@@ -108,49 +115,49 @@ user-scalable=no" />
 						<div class="text-left changeLine">{{detailObject.docName}}</div>
 						<hr> -->
 						<div class="text-left specialTitle">文档版本：</div>
-						<div class="text-left changeLine">{{detailObject.docVer}}</div>
+						<div class="text-left changeLine">10</div>
 						<hr>
 						<div class="text-left specialTitle">类型：</div>
-						<div class="text-left changeLine">{{detailObject.docType}}</div>
+						<div class="text-left changeLine">办公文档</div>
 						<hr>
 						<div class="text-left specialTitle">分类：</div>
-						<div class="text-left changeLine">{{detailObject.docClassify}}</div>
+						<div class="text-left changeLine">设计部</div>
 						<hr>
 						<div class="text-left specialTitle">创建人：</div>
-						<div class="text-left changeLine">{{detailObject.createPerson}}</div>
+						<div class="text-left changeLine">李霞</div>
 						<hr>
 						<div class="text-left specialTitle">状态：</div>
-						<div class="text-left changeLine">{{detailObject.docStatus}}</div>
+						<div class="text-left changeLine">已归档</div>
 						<hr>
 						<div class="text-left specialTitle">摘要：</div>
-						<div class="text-left changeLine">{{detailObject.docAbstract}}</div>
+						<div class="text-left changeLine">PLM项目上线，相关规范及注意事项</div>
 						<hr>
 						<div class="text-left specialTitle">关键字：</div>
-						<div class="text-left changeLine">{{detailObject.docKeyWord}}</div>
+						<div class="text-left changeLine">PLM</div>
 						<hr>
 						<div class="text-left specialTitle">创建时间：</div>
-						<div class="text-left changeLine">{{detailObject.createTime}}</div>
+						<div class="text-left changeLine">2017-2-3</div>
 						<hr>
 						<div class="text-left specialTitle">修改时间：</div>
-						<div class="text-left changeLine">{{detailObject.changeTime}}</div>
+						<div class="text-left changeLine">2017-6-3</div>
 						<hr>
 						<div class="text-left specialTitle">文档格式：</div>
-						<div class="text-left changeLine">{{detailObject.docFormat}}</div>
+						<div class="text-left changeLine">docx</div>
 						<hr>
 						<div class="text-left specialTitle">文档密级：</div>
-						<div class="text-left changeLine">{{detailObject.docDense}}</div>
+						<div class="text-left changeLine">公共</div>
 						<hr>
 						<div class="text-left specialTitle">生效时间：</div>
-						<div class="text-left changeLine">{{detailObject.validTime}}</div>
+						<div class="text-left changeLine">2017-12-08</div>
 						<hr>
 						<div class="text-left specialTitle">失效时间：</div>
-						<div class="text-left changeLine">{{detailObject.invalidTime}}</div>
+						<div class="text-left changeLine"></div>
 						<hr>
 						<div class="text-left specialTitle">修改人：</div>
 						<div class="text-left changeLine">{{detailObject.changePerson}}</div>
 						<hr>
 						<div class="text-left specialTitle">备注：</div>
-						<div class="text-left changeLine">{{detailObject.remarks}}</div>
+						<div class="text-left changeLine"></div>
 						<hr>
 						<div ng-repeat="addFiled in detailObject.addFileds">
 							<div class="text-left specialTitle">{{addFiled.fieldName}}：</div>
@@ -204,10 +211,10 @@ user-scalable=no" />
 						<div class="text-left changeLine">{{detailObject.materialName}}</div>
 						<hr> -->
 						<div class="text-left specialTitle">物料版本：</div>
-						<div class="text-left changeLine">{{detailObject.materialVer}}</div>
+						<div class="text-left changeLine">10</div>
 						<hr>
 						<div class="text-left specialTitle">物料分类：</div>
-						<div class="text-left changeLine">{{detailObject.materialClassify}}</div>
+						<div class="text-left changeLine">工具附件</div>
 						<hr>
 						<div class="text-left specialTitle">材料：</div>
 						<div class="text-left changeLine">{{detailObject.materialStuff}}</div>
@@ -216,46 +223,46 @@ user-scalable=no" />
 						<div class="text-left changeLine">{{detailObject.materialRemarks}}</div>
 						<hr>
 						<div class="text-left specialTitle">重量：</div>
-						<div class="text-left changeLine">{{detailObject.weight}}</div>
+						<div class="text-left changeLine">1.67</div>
 						<hr>
 						<div class="text-left specialTitle">摘要：</div>
 						<div class="text-left changeLine">{{detailObject.docAbstract}}</div>
 						<hr>
 						<div class="text-left specialTitle">状态：</div>
-						<div class="text-left changeLine">{{detailObject.status}}</div>
+						<div class="text-left changeLine">已归档</div>
 						<hr>
 						<div class="text-left specialTitle">创建人：</div>
-						<div class="text-left changeLine">{{detailObject.createPerson}}</div>
+						<div class="text-left changeLine">张强</div>
 						<hr>
 						<div class="text-left specialTitle">创建时间：</div>
-						<div class="text-left changeLine">{{detailObject.createTime}}</div>
+						<div class="text-left changeLine">2016-08-23</div>
 						<hr>
 						<div class="text-left specialTitle">修改时间：</div>
-						<div class="text-left changeLine">{{detailObject.changeTime}}</div>
+						<div class="text-left changeLine">2016-08-25</div>
 						<hr>
 						<div class="text-left specialTitle">修改人：</div>
-						<div class="text-left changeLine">{{detailObject.changePerson}}</div>
+						<div class="text-left changeLine">张强</div>
 						<hr>
 						<div class="text-left specialTitle">种类：</div>
-						<div class="text-left changeLine">{{detailObject.materailClass}}</div>
+						<div class="text-left changeLine">组件</div>
 						<hr>
 						<div class="text-left specialTitle">属性：</div>
-						<div class="text-left changeLine">{{detailObject.propety}}</div>
+						<div class="text-left changeLine">自制件</div>
 						<hr>
 						<div class="text-left specialTitle">物料导入ERP状态：</div>
-						<div class="text-left changeLine">{{detailObject.importErpStatus}}</div>
+						<div class="text-left changeLine">是</div>
 						<hr>
 						<div class="text-left specialTitle">原件号：</div>
-						<div class="text-left changeLine">{{detailObject.originalNum}}</div>
+						<div class="text-left changeLine">39B-11063-B</div>
 						<hr>
 						<div class="text-left specialTitle">规格：</div>
 						<div class="text-left changeLine">{{detailObject.standard}}</div>
 						<hr>
 						<div class="text-left specialTitle">计量单位：</div>
-						<div class="text-left changeLine">{{detailObject.measurementUnit}}</div>
+						<div class="text-left changeLine">个</div>
 						<hr>
 						<div class="text-left specialTitle">计量单位组：</div>
-						<div class="text-left changeLine">{{detailObject.measurementUnitGroup}}</div>
+						<div class="text-left changeLine">数量单位</div>
 						<hr>
 						<div class="text-left specialTitle">型号：</div>
 						<div class="text-left changeLine">{{detailObject.model}}</div>
@@ -296,13 +303,13 @@ user-scalable=no" />
 						<div class="text-left changeLine">{{detailObject.chgApplyName}}</div> 
 						<hr>-->
 						<div class="text-left specialTitle">状态：</div>
-						<div class="text-left changeLine">{{detailObject.status}}</div>
+						<div class="text-left changeLine">审签中</div>
 						<hr>
 						<div class="text-left specialTitle">创建人：</div>
-						<div class="text-left changeLine">{{detailObject.createPerson}}</div>
+						<div class="text-left changeLine">邓华来</div>
 						<hr>
 						<div class="text-left specialTitle">创建时间：</div>
-						<div class="text-left changeLine">{{detailObject.createTime}}</div>
+						<div class="text-left changeLine">2017-12-29</div>
 						<hr>
 						<div ng-repeat="addFiled in detailObject.addFileds">
 							<div class="text-left specialTitle">{{addFiled.fieldName}}：</div>
@@ -391,25 +398,25 @@ user-scalable=no" />
 						<div class="text-left changeLine">{{detailObject.chgTaskName}}</div>
 						<hr> -->
 						<div class="text-left specialTitle">执行人：</div>
-						<div class="text-left changeLine">{{detailObject.executePerson}}</div>
+						<div class="text-left changeLine">邓华来</div>
 						<hr>
 						<div class="text-left specialTitle">创建人：</div>
-						<div class="text-left changeLine">{{detailObject.createPerson}}</div>
+						<div class="text-left changeLine">邓华来</div>
 						<hr>
 						<div class="text-left specialTitle">创建时间：</div>
-						<div class="text-left changeLine">{{detailObject.createTime}}</div>
+						<div class="text-left changeLine">2017-12-21</div>
 						<hr>
 						<div class="text-left specialTitle">计划开始时间：</div>
-						<div class="text-left changeLine">{{detailObject.planStartTime}}</div>
+						<div class="text-left changeLine">2017-12-21</div>
 						<hr>
 						<div class="text-left specialTitle">计划结束时间：</div>
-						<div class="text-left changeLine">{{detailObject.planEndTime}}</div>
+						<div class="text-left changeLine">2017-12-29</div>
 						<hr>
 						<div class="text-left specialTitle">状态：</div>
-						<div class="text-left changeLine">{{detailObject.status}}</div>
+						<div class="text-left changeLine">执行</div>
 						<hr>
 						<div class="text-left specialTitle">实际开始时间：</div>
-						<div class="text-left changeLine">{{detailObject.realStartTime}}</div>
+						<div class="text-left changeLine">2017-12-21</div>
 						<hr>
 						<div class="text-left specialTitle">实际结束时间：</div>
 						<div class="text-left changeLine">{{detailObject.realEndTime}}</div>
@@ -500,7 +507,7 @@ user-scalable=no" />
 					<div class="row">
 						<div class="col-xs-8 text-left">
 							<button ng-show="showDownload" ng-disabled="canDownload"
-							 class="btn btn-success" ng-click="downloadJumpUrl()"
+							 class="btn btn-success" onclick="this.innerHTML='下载中...';this.setAttribute('disabled','true')"
 						  id="downloadInfoId" target="_blank">下载</button>{{downloadInfo}}
 							<!-- <button type="button" class="btn btn-success"
 							ng-click="directDownload()">下载</button> -->
@@ -627,3 +634,12 @@ user-scalable=no" />
 
 
 </div>
+<script>
+	var back = document.getElementById('back');
+	var click = false;
+	back.onclick=function(){
+		if(click){return ;}
+		history.back()
+		click = true;
+	}
+</script>

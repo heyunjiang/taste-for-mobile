@@ -6,9 +6,13 @@
 	background: url(../assets/1.jpg) #F1F1F1 no-repeat center;
     width: 100%;
     min-width: 100%;
-    height: 209px;
+    height: 80px;
     background-size: cover;
     position: relative;
+    color: white;
+    line-height: 80px;
+    padding-left: 10px;
+    text-align: left;
 }
 .contentBox {
 	padding: 20px 10px;

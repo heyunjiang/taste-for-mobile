@@ -11,7 +11,7 @@ class IndexPage extends React.Component {
 	constructor(props) {
         super(props)
         this.state = {
-        	currentUrl: "./wechat/pdmwx/wx/taskList.html",
+        	currentUrl: "./wechat/pdmwx/wx/messageSend.html",
         }
     }
     render() {
@@ -36,11 +36,11 @@ class IndexPage extends React.Component {
 		  }
 		  return (
 		    <div className={styles.normal}>
-		      <header className={styles.header}></header>
+		      <header className={styles.header}>推荐使用chrome浏览器体验</header>
 		      <div className={styles.contentBox}>
 				<Row>
 			      <Col span={8}>
-			      	<Menu onClick={handleClick} style={{ width: 256 }} defaultOpenKeys={['sub1']} defaultSelectedKeys={['5']} mode="inline">
+			      	<Menu onClick={handleClick} style={{ width: 256 }} defaultOpenKeys={['sub1']} defaultSelectedKeys={['2']} mode="inline">
 						<SubMenu key="sub1" title={<span><Icon type="wechat" /><span>PLM-微信</span></span>}>
 				            <Menu.Item key="1">账户绑定</Menu.Item>
 				            <Menu.Item key="2">消息推送</Menu.Item>

@@ -87,8 +87,8 @@ function ($scope, ngTableParams,$http) {
       var data = {}
       switch(tastetaskType){
         case 'CHECK_DOC_TASK' : data = {
-                  "docName":"凌久电子-OrCAD接口提交BOM节点数量不统计非焊接件详细需求",
-                  "belongTask":"Req01909 凌久电子-OrCAD接口提交BOM节点数量不统计非焊接件设计",
+                  "docName":"OrCAD接口提交BOM节点数量不统计非焊接件详细需求",
+                  "belongTask":"OrCAD接口提交优化",
                   "docType":"docx",
                   "sumbitPerson":"柏本雄",
                   "status":"就绪",
