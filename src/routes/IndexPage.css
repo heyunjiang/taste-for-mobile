@@ -23,7 +23,7 @@
     height: 800px;
     background: top no-repeat url(../assets/devices-sprite.jpg);
     background-size: 467px;
-    // margin: 0 auto;
+    /*// margin: 0 auto;*/
 }
 .platformImg {
 	position: absolute;
@@ -39,4 +39,24 @@
     height: 568px;
     background-color: #fff;
     padding-top: 20px;
+}
+@media (max-width: 769px){
+    .header,
+    .platformImg {
+        display: none;
+    }
+    .contentBox {
+        padding: 0;
+    }
+    .platform {
+        background: white;
+        width: 100vw;
+        height: 100vh;
+    }
+    .platformIframe{
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+    }
 }

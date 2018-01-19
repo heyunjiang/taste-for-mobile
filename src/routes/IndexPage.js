@@ -12,10 +12,11 @@ class IndexPage extends React.Component {
         super(props)
         this.state = {
         	currentUrl: "./wechat/pdmwx/wx/messageSend.html",
+        	isPhone: document.body.clientWidth<769,
         }
     }
     render() {
-    	  const handleClick = (obj)=>{
+    	const handleClick = (obj)=>{
     	  	let url
 		  	switch(obj.key){
 		  		case "1": url="./wechat/pdmwx/wx/bindUser.html";break;
@@ -33,14 +34,14 @@ class IndexPage extends React.Component {
 		  	this.setState({
 		  		currentUrl: url,
 		  	})
-		  }
-		  return (
+		}
+		return (
 		    <div className={styles.normal}>
 		      <header className={styles.header}>推荐使用chrome浏览器体验</header>
 		      <div className={styles.contentBox}>
 				<Row>
-			      <Col span={8}>
-			      	<Menu onClick={handleClick} style={{ width: 256 }} defaultOpenKeys={['sub1']} defaultSelectedKeys={['2']} mode="inline">
+			      <Col xs={{ span: 24}} md={{ span: 8}}>
+			      	<Menu onClick={handleClick} style={{ width: 256 }} defaultOpenKeys={[]} defaultSelectedKeys={[]} mode={this.state.isPhone?"horizontal":"inline"}>
 						<SubMenu key="sub1" title={<span><Icon type="wechat" /><span>PLM-微信</span></span>}>
 				            <Menu.Item key="1">账户绑定</Menu.Item>
 				            <Menu.Item key="2">消息推送</Menu.Item>
@@ -57,7 +58,7 @@ class IndexPage extends React.Component {
 				        </SubMenu>
 				    </Menu>
 			      </Col>
-			      <Col span={16}>
+			      <Col xs={{ span: 24}} md={{ span: 16}}>
 			      	<div className={styles.platform}>
 						<img className={styles.platformImg} src={iosBar} />
 						<iframe className={styles.platformIframe} frameBorder="0" src={this.state.currentUrl}>
@@ -67,7 +68,7 @@ class IndexPage extends React.Component {
 			  	</Row>
 		      </div>
 		    </div>
-		  );
+		);
     }
   
 }

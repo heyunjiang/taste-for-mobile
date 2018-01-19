@@ -10135,9 +10135,9 @@ a:focus {
 .nostrip {
   background: #fcfaff;
 }
-.ant-table-body,
-.ant-table-fixed-header .ant-table-scroll .ant-table-header {
-  overflow-y: auto !important;
+.ant-table-body::-webkit-scrollbar-track,
+.ant-table-fixed-header .ant-table-scroll .ant-table-header::-webkit-scrollbar-track {
+  background-color: #f7f7f7;
 }
 .ant-pagination-item-active {
   background-color: inherit;
@@ -10159,6 +10159,12 @@ a:focus {
 }
 .ant-spin-blur:after {
   z-index: 10000;
+}
+.ant-table .ant-table-tbody > tr > td,
+.ant-table-thead > tr > th,
+.ant-select,
+.ant-btn {
+  color: black;
 }
 @-webkit-keyframes nprogress-spinner___pjTzz {
   0% {
@@ -10418,6 +10424,36 @@ a:focus {
   color: white !important;
 }
 .grayTheme .mainBody a:hover {
+  color: #dcddde;
+}
+.pureBlackTheme aside {
+  background: transparent !important;
+}
+.pureBlackTheme .mainBody .ant-menu .ant-menu-item {
+  font-size: 14px;
+}
+.pureBlackTheme .mainBody .ant-menu-item-selected {
+  background-color: #7fb7e4 !important;
+}
+.pureBlackTheme .mainBody a {
+  color: white !important;
+}
+.pureBlackTheme .mainBody a:hover {
+  color: #dcddde;
+}
+.pureBlueTheme aside {
+  background: transparent !important;
+}
+.pureBlueTheme .mainBody .ant-menu .ant-menu-item {
+  font-size: 14px;
+}
+.pureBlueTheme .mainBody .ant-menu-item-selected {
+  background-color: #7fb7e4 !important;
+}
+.pureBlueTheme .mainBody a {
+  color: white !important;
+}
+.pureBlueTheme .mainBody a:hover {
   color: #dcddde;
 }
 /* them less add by hyj on 2017.11.22 end */
@@ -10684,6 +10720,78 @@ a:focus {
   color: white;
 }
 .purpleTheme .ant-popover-content a:hover {
+  color: #dcddde;
+}
+.pureBlackTheme .header .rightWarpper .ant-menu .ant-menu-submenu-title,
+.pureBlackTheme .header .rightWarpper .ant-menu .ant-menu-item {
+  background: #353434;
+  color: white;
+}
+.pureBlackTheme .header .rightWarpper .ant-menu .ant-menu-submenu-title:hover,
+.pureBlackTheme .header .rightWarpper .ant-menu .ant-menu-item:hover {
+  background: #7fb7e4;
+  color: #dcddde;
+}
+.pureBlackTheme .header .rightWarpper .ant-menu .ant-menu-submenu-title {
+  background: transparent;
+  color: white;
+}
+.pureBlackTheme .header .rightWarpper .ant-menu .ant-menu-item-active {
+  color: #dcddde;
+}
+.pureBlackTheme .header .headerButton {
+  color: white;
+}
+.pureBlackTheme .header .headerButton:hover {
+  background-color: #7fb7e4;
+}
+.pureBlackTheme .ant-popover-content .ant-menu-item {
+  background-color: #353434 !important;
+}
+.pureBlackTheme .ant-popover-content .ant-menu-inline .ant-menu-item-selected,
+.pureBlackTheme .ant-popover-content .ant-menu-inline .ant-menu-selected {
+  background-color: #7fb7e4 !important;
+}
+.pureBlackTheme .ant-popover-content a {
+  color: white;
+}
+.pureBlackTheme .ant-popover-content a:hover {
+  color: #dcddde;
+}
+.pureBlueTheme .header .rightWarpper .ant-menu .ant-menu-submenu-title,
+.pureBlueTheme .header .rightWarpper .ant-menu .ant-menu-item {
+  background: #4078bf;
+  color: white;
+}
+.pureBlueTheme .header .rightWarpper .ant-menu .ant-menu-submenu-title:hover,
+.pureBlueTheme .header .rightWarpper .ant-menu .ant-menu-item:hover {
+  background: #7fb7e4;
+  color: #dcddde;
+}
+.pureBlueTheme .header .rightWarpper .ant-menu .ant-menu-submenu-title {
+  background: transparent;
+  color: white;
+}
+.pureBlueTheme .header .rightWarpper .ant-menu .ant-menu-item-active {
+  color: #dcddde;
+}
+.pureBlueTheme .header .headerButton {
+  color: white;
+}
+.pureBlueTheme .header .headerButton:hover {
+  background-color: #7fb7e4;
+}
+.pureBlueTheme .ant-popover-content .ant-menu-item {
+  background-color: #4078bf !important;
+}
+.pureBlueTheme .ant-popover-content .ant-menu-inline .ant-menu-item-selected,
+.pureBlueTheme .ant-popover-content .ant-menu-inline .ant-menu-selected {
+  background-color: #7fb7e4 !important;
+}
+.pureBlueTheme .ant-popover-content a {
+  color: white;
+}
+.pureBlueTheme .ant-popover-content a:hover {
   color: #dcddde;
 }
 /* them less add by hyj on 2017.11.22 end */
