@@ -1,4 +1,7 @@
 /* 重写 antd css */
+:global .ant-menu {
+    font-family: "Microsoft Yahei", "AvenirNext-Regular", "Helvetica Neue", "lucida grande", "PingFangHK-Light", "STHeiti", "Heiti SC", "Hiragino Sans GB", "Microsoft JhengHei", SimHei, "WenQuanYi Micro Hei", "Droid Sans", "Roboto", Helvetica, Tahoma, Arial, "sans-serif";
+}
 :global .ant-menu-item, 
 :global .ant-menu-submenu-title {
     padding: 0 10px;
@@ -26,13 +29,13 @@
 }
 /* 自己写的css */
 .normal {
-  font-family: Georgia, sans-serif;
+  font-family: "Microsoft Yahei", "AvenirNext-Regular", "Helvetica Neue", "lucida grande", "PingFangHK-Light", "STHeiti", "Heiti SC", "Hiragino Sans GB", "Microsoft JhengHei", SimHei, "WenQuanYi Micro Hei", "Droid Sans", "Roboto", Helvetica, Tahoma, Arial, "sans-serif";
   text-align: center;
   width: 100%;
   height: auto;
 }
 :global .normalRotate {
-    font-family: Georgia, sans-serif;
+    font-family: "Microsoft Yahei", "AvenirNext-Regular", "Helvetica Neue", "lucida grande", "PingFangHK-Light", "STHeiti", "Heiti SC", "Hiragino Sans GB", "Microsoft JhengHei", SimHei, "WenQuanYi Micro Hei", "Droid Sans", "Roboto", Helvetica, Tahoma, Arial, "sans-serif";
     text-align: center;
     width: 100%;
     height: auto;
